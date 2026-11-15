@@ -34,7 +34,8 @@
 				<ul class="_resume-contact">
 					<li>Kathmandu, Nepal</li>
 					<li><a href="mailto:abhinaash.tiwari@gmail.com">abhinaash.tiwari@gmail.com</a></li>
-					<li><a href="https://github.com/abhinaash-broski" target="_blank" rel="noopener">github.com/abhinaash-broski</a></li>
+					<li><a href="https://github.com/zeutonx" target="_blank" rel="noopener">github.com/zeutonx</a></li>
+					<li><a href="https://orcid.org/0009-0005-1467-2240" target="_blank" rel="noopener">ORCID 0009-0005-1467-2240</a></li>
 				</ul>
 			</header>
 
@@ -96,10 +97,23 @@
 
 				<div class="_entry">
 					<div class="_entry-head">
+						<h4>NEPSE-Data: An Open Dataset of the Nepal Stock Exchange</h4>
+						<span class="_entry-date">Nov 2026 – present</span>
+					</div>
+					<p class="_entry-meta">Open-source project &middot; <a class="_entry-link" href="https://github.com/zeutonx/NEPSE-Data" target="_blank" rel="noopener">Code on GitHub</a> &middot; <a class="_entry-link" href="https://www.kaggle.com/datasets/zeuton/nepse-stock-market-data" target="_blank" rel="noopener">Dataset on Kaggle</a></p>
+					<ul>
+						<li>Built a Python scraper and command-line tool that collects daily prices, full price histories, floorsheets, company fundamentals, dividends, right issues and mergers for every listed NEPSE company, plus 18 market indices since 1997 and Nepal Rastra Bank exchange rates since 2000.</li>
+						<li>Computed bonus- and right-adjusted prices so returns are comparable across book-close dates, and documented quirks in the source data such as duplicate dates and inconsistent dividend totals.</li>
+						<li>Automated the pipeline with GitHub Actions: tests and a data update run daily, and a new version of the dataset is published to Kaggle every two weeks.</li>
+					</ul>
+				</div>
+
+				<div class="_entry">
+					<div class="_entry-head">
 						<h4>Image Compression Using Singular Value Decomposition</h4>
 						<span class="_entry-date">May 2025 – Jul 2025</span>
 					</div>
-					<p class="_entry-meta">Mathematics seminar project &middot; <a class="_entry-link" href="https://github.com/abhinaash-broski/Greyscale-Image-Compression-Using-SVD" target="_blank" rel="noopener">Code on GitHub</a></p>
+					<p class="_entry-meta">Mathematics seminar project &middot; <a class="_entry-link" href="https://github.com/zeutonx/Greyscale-Image-Compression-Using-SVD" target="_blank" rel="noopener">Code on GitHub</a></p>
 					<ul>
 						<li>Applied truncated SVD to lossy greyscale image compression, grounded in the Eckart–Young–Mirsky theorem, and verified its error formula numerically.</li>
 						<li>Built a Python (NumPy) compression module and command-line tool with unit tests, choosing the rank by energy retained and PSNR. A 360×360 image is stored with 9× fewer values at 33.5 dB.</li>
@@ -112,7 +126,7 @@
 						<h4>Physics-Informed Neural Networks vs. Finite Differences for the Heat Equation</h4>
 						<span class="_entry-date">Dec 2024 – Apr 2025</span>
 					</div>
-					<p class="_entry-meta">Independent project &middot; <a class="_entry-link" href="https://github.com/abhinaash-broski/pinn-heat-equation-benchmark" target="_blank" rel="noopener">Code on GitHub</a></p>
+					<p class="_entry-meta">Independent project &middot; <a class="_entry-link" href="https://github.com/zeutonx/pinn-heat-equation-benchmark" target="_blank" rel="noopener">Code on GitHub</a></p>
 					<ul>
 						<li>Benchmarked PINNs against explicit, implicit and Crank–Nicolson finite-difference schemes for the 1D, 2D and 3D heat equations, comparing accuracy, runtime and memory under coarse discretization.</li>
 						<li>Trained PINNs with adaptive GradNorm loss weighting, Latin Hypercube Sampling and Adam/L-BFGS. Finite differences were more accurate; PINNs were faster in 3D.</li>
