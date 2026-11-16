@@ -1,4 +1,4 @@
-# Abhinaash Blog
+# Abhinaash's Notebook
 
 Personal site and blog of Abhinaash Tiwari — proof-oriented notes and long-form expository essays on mathematics, with a focus on optimization theory, optimal transport, and geometric deep learning.
 
