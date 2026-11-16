@@ -2,13 +2,37 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="author" content="Abhinaash Tiwari">
-	<meta name="description" content="Why ordinary recurrent networks forget, the one equation that fixes it, and how gates turn that fix into a trainable memory cell. A mathematical walkthrough of LSTM from the vanishing-gradient analysis to the modern cell, with backpropagation derived, a worked example, and a reference implementation.">
-	<meta name="keywords" content="LSTM, long short-term memory, recurrent neural networks, vanishing gradient, backpropagation through time, constant error carousel, forget gate, GRU, Hochreiter, Schmidhuber">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Long Short-Term Memory, from First Principles | Abhinaash Blog</title>
+	<title>Long Short-Term Memory, from First Principles | Abhinaash Tiwari</title>
+	<meta name="description" content="Why recurrent networks forget and how LSTM gates fix it: a mathematical walkthrough from vanishing gradients to the modern cell, with backpropagation derived.">
+	<meta name="author" content="Abhinaash Tiwari">
+	<meta name="keywords" content="LSTM, long short-term memory, recurrent neural networks, vanishing gradient, backpropagation through time, constant error carousel, forget gate, GRU, Hochreiter, Schmidhuber">
+	<meta name="robots" content="index, follow, max-image-preview:large">
+	<link rel="canonical" href="https://abhinaash.com.np/posts/lstm.html">
 
-	<link rel="icon" type="image/x-icon" href="#">
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Abhinaash Blog">
+	<meta property="og:locale" content="en_US">
+	<meta property="og:title" content="Long Short-Term Memory, from First Principles">
+	<meta property="og:description" content="Why recurrent networks forget and how LSTM gates fix it: a mathematical walkthrough from vanishing gradients to the modern cell, with backpropagation derived.">
+	<meta property="og:url" content="https://abhinaash.com.np/posts/lstm.html">
+	<meta property="og:image" content="https://abhinaash.com.np/assets/images/profile-640.jpg">
+	<meta property="og:image:width" content="640">
+	<meta property="og:image:height" content="640">
+	<meta property="og:image:alt" content="Portrait of Abhinaash Tiwari">
+	<meta property="article:published_time" content="2026-09-16">
+	<meta property="article:author" content="https://abhinaash.com.np/about.html">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Long Short-Term Memory, from First Principles">
+	<meta name="twitter:description" content="Why recurrent networks forget and how LSTM gates fix it: a mathematical walkthrough from vanishing gradients to the modern cell, with backpropagation derived.">
+	<meta name="twitter:image" content="https://abhinaash.com.np/assets/images/profile-640.jpg">
+
+	<meta name="theme-color" content="#faf9f6">
+	<link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400..600&family=Lora:ital,wght@0,400..600;1,400..600&display=swap">
 	<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="../assets/css/post.css">
 
@@ -21,10 +45,43 @@
 		};
 	</script>
 	<script defer id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "BlogPosting",
+				"@id": "https://abhinaash.com.np/posts/lstm.html#post",
+				"mainEntityOfPage": "https://abhinaash.com.np/posts/lstm.html",
+				"headline": "Long Short-Term Memory, from First Principles",
+				"description": "Why recurrent networks forget and how LSTM gates fix it: a mathematical walkthrough from vanishing gradients to the modern cell, with backpropagation derived.",
+				"datePublished": "2026-09-16",
+				"inLanguage": "en",
+				"author": {
+					"@type": "Person",
+					"@id": "https://abhinaash.com.np/#person",
+					"name": "Abhinaash Tiwari",
+					"url": "https://abhinaash.com.np/about.html"
+				},
+				"publisher": {
+					"@type": "Person",
+					"@id": "https://abhinaash.com.np/#person",
+					"name": "Abhinaash Tiwari",
+					"url": "https://abhinaash.com.np/about.html"
+				},
+				"isPartOf": {
+					"@type": "Blog",
+					"name": "Abhinaash Blog",
+					"url": "https://abhinaash.com.np/posts.html"
+				}
+			}
+		]
+	}
+	</script>
 </head>
 <body>
 	<header class="container__">
-		<h1 class="__header-title"><a href="../index.html">Abhinaash Blog</a></h1>
+		<p class="__header-title"><a href="../index.html">Abhinaash Blog</a></p>
 		<nav class="__header-nav">
 			<ul>
 				<li><a href="../index.html">Home</a></li>
@@ -36,11 +93,11 @@
 	</header>
 
 	<main class="container__">
-		<section class="__post">
-			<img class="_thumbnail" src="https://picsum.photos/seed/lstm/800/400?grayscale" width="800" height="400" alt="Article thumbnail.">
+		<article class="__post">
+			<img class="_thumbnail" src="../assets/images/thumbnails/lstm.svg" width="800" height="400" alt="">
 			<div class="_title-date">
-				<h2>Long Short-Term Memory, from First Principles</h2>
-				<time datetime="2026-09-16"><i>September 16, 2026</i></time>
+				<h1>Long Short-Term Memory, from First Principles</h1>
+				<time datetime="2026-09-16">September 16, 2026</time>
 			</div>
 
 			<p class="_byline"><em>Why ordinary recurrent networks forget, the one equation that fixes it, and how gates turn that fix into a trainable memory cell. A mathematical walkthrough based on Hochreiter &amp; Schmidhuber (1997) and Staudemeyer &amp; Rothstein Morris (2019).</em></p>
@@ -77,13 +134,13 @@
 				</ol>
 			</div>
 
-			<h3 class="_secondary-title" id="s1">1. The sequence problem</h3>
+			<h2 class="_secondary-title" id="s1">1. The sequence problem</h2>
 
 			<p>A feed-forward network computes a static map $y = F(x)$. Many problems are not static: the right output at time $t$ depends on inputs seen at $t-1, t-2, \dots, t-1000$. Speech, handwriting, price series and text all have this shape. To model them we need a <em>dynamic</em> classifier, one with state that carries information forward.</p>
 
 			<p>Recurrent networks provide that state. In practice, however, a plain RNN trained by gradient descent can only exploit dependencies spanning roughly 5 to 10 steps. LSTM was designed to push that horizon beyond 1,000 steps. To see why it works, we first need to see precisely why the plain RNN fails.</p>
 
-			<h3 class="_secondary-title" id="s2">2. RNNs and backpropagation through time</h3>
+			<h2 class="_secondary-title" id="s2">2. RNNs and backpropagation through time</h2>
 
 			<p>Take a fully recurrent network with non-input units $U$ and input units $I$. Each unit $u$ has activation function $f_u$, and $W_{[u,v]}$ is the weight from $v$ to $u$. The forward dynamics are</p>
 
@@ -123,7 +180,7 @@ $$</div>
 
 			<p>BPTT needs memory proportional to sequence length; RTRL needs no history but costs $O(n^4)$ per step for $n$ units. The original LSTM uses a hybrid of the two, as we will see.</p>
 
-			<h3 class="_secondary-title" id="s3">3. Why gradients vanish or explode</h3>
+			<h2 class="_secondary-title" id="s3">3. Why gradients vanish or explode</h2>
 
 			<p>Hochreiter's 1991 analysis asks: if an error appears at unit $u$ at time $t$, how much of it reaches unit $v$ at time $t-q$? Differentiating the recursion above gives</p>
 
@@ -151,11 +208,11 @@ $$</div>
 				<li>If $|f'_{l_m} w_{l_m l_{m-1}}| &lt; 1$ for all $m$, the product shrinks like $c^q$. Errors vanish and long-range learning stalls.</li>
 			</ul>
 
-			<h4 class="_tertiary-title">The sigmoid makes vanishing the default</h4>
+			<h3 class="_tertiary-title">The sigmoid makes vanishing the default</h3>
 
 			<p>For the logistic sigmoid $\sigma(x) = 1/(1+e^{-x})$ we have $\sigma'(x) = \sigma(x)(1-\sigma(x)) \le \tfrac14$. So $|f' w| &lt; 1$ whenever $|w| &lt; 4$, which covers nearly every weight at initialisation. Making weights larger does not help: for fixed input $y$, $|\sigma'(wy)\,w| \to 0$ as $|w|\to\infty$, because the derivative decays exponentially while the weight grows only linearly. Raising the learning rate does not help either, since it scales long- and short-range gradients equally.</p>
 
-			<h4 class="_tertiary-title">A matrix bound</h4>
+			<h3 class="_tertiary-title">A matrix bound</h3>
 
 			<p>In matrix form, with $F'(t-m)$ the diagonal matrix of derivatives, the path sum equals</p>
 
@@ -171,7 +228,7 @@ $$</div>
 
 			<p>If every $|w_{ij}| \le w_{\max} &lt; 4/n$, set $\rho = n w_{\max}/4 &lt; 1$ and the bound becomes $n\rho^q$: guaranteed exponential decay. Summing over all output units shows that global error flow vanishes too. The same conclusion was reached independently by Bengio, Simard and Frasconi (1994).</p>
 
-			<h3 class="_secondary-title" id="s4">4. The constant error carousel</h3>
+			<h2 class="_secondary-title" id="s4">4. The constant error carousel</h2>
 
 			<p>The analysis tells us exactly what to demand. Consider a single unit $j$ with a self-connection $w_{jj}$. Its local backflow is</p>
 
@@ -201,7 +258,7 @@ $$</div>
 				<p>Both conflicts worsen as time lags grow, because stored information must be protected for longer. The remedy is to make reading and writing context-dependent.</p>
 			</div>
 
-			<h3 class="_secondary-title" id="s5">5. Gates: the 1997 memory cell</h3>
+			<h2 class="_secondary-title" id="s5">5. Gates: the 1997 memory cell</h2>
 
 			<p>LSTM wraps the CEC with two <strong>multiplicative gate units</strong>. An input gate $\text{in}_j$ decides when to write; an output gate $\text{out}_j$ decides when to read. The result is the memory cell $c_j$.</p>
 
@@ -257,7 +314,7 @@ $$</div>
 						<rect x="482" y="238" width="76" height="34"/>
 						<line x1="520" y1="238" x2="520" y2="170" marker-end="url(#ar)"/>
 					</g>
-					<g font-family="JetBrains Mono, Menlo, Consolas, monospace" font-size="13" fill="var(--ink)" text-anchor="middle">
+					<g font-size="13" fill="var(--ink)" text-anchor="middle">
 						<text x="120" y="155">g</text>
 						<text x="200" y="155">×</text>
 						<text x="278" y="155">+</text>
@@ -282,7 +339,7 @@ $$</div>
 				<p>The input gate controls error flow into the cell's input weights $w_{c_j i}$, so writing happens only when $y^{\text{in}_j}\approx 1$. The output gate controls error flow out of the cell, so the cell disturbs the rest of the network only when $y^{\text{out}_j}\approx 1$. Errors trapped inside the CEC cannot change; the gates learn which errors to let in and when to release them.</p>
 			</div>
 
-			<h3 class="_secondary-title" id="s6">6. Truncated learning and exact error flow</h3>
+			<h2 class="_secondary-title" id="s6">6. Truncated learning and exact error flow</h2>
 
 			<p>The 1997 algorithm deliberately cuts gradient paths that leave a cell. It sets</p>
 
@@ -316,7 +373,7 @@ $$</div>
 				<p>The error is scaled only at the moment it enters the cell (time $t$) and the moment it leaves (time $t-q$). Nothing in between depends on $q$. Compare this with the $q$-fold product in Section 3.</p>
 			</div>
 
-			<h4 class="_tertiary-title">Learning rules of the truncated algorithm</h4>
+			<h3 class="_tertiary-title">Learning rules of the truncated algorithm</h3>
 
 			<p>With squared error $E(t) = \sum_k (t^k(t) - y^k(t))^2$ and unit error $e_l(t) = -\partial E(t)/\partial\,\text{net}_l(t)$, the updates for output units, hidden units and output gates are ordinary backpropagation:</p>
 
@@ -346,13 +403,13 @@ $$</div>
 
 			<p>The weight updates are then $\Delta w_{\text{in}_j m}(t) = \alpha \sum_v e_{s_{c_j^v}}(t)\, \partial s_{c_j^v}(t)/\partial w_{\text{in}_j m}$ and $\Delta w_{c_j^v m}(t) = \alpha\, e_{s_{c_j^v}}(t)\, \partial s_{c_j^v}(t)/\partial w_{c_j^v m}$. Only these state derivatives need storing, so the algorithm is local in both space and time.</p>
 
-			<h4 class="_tertiary-title">Two practical problems and their fixes</h4>
+			<h3 class="_tertiary-title">Two practical problems and their fixes</h3>
 
 			<p><em>Abuse.</em> Early in training the network can reduce error without memory, and may misuse cells as constant bias units. Fixes: add cells only when error stops falling, or give output gates negative initial biases (e.g. $-1, -2, -3$) so cells are "allocated" one at a time.</p>
 
 			<p><em>Internal state drift.</em> If a cell's inputs are mostly of one sign, $s_{c_j}$ drifts, $h'(s_{c_j})\to 0$, and the gradient vanishes at the exit point. Fix: bias input gates negatively at initialisation (e.g. $-3, -6$).</p>
 
-			<h3 class="_secondary-title" id="s7">7. Forget gates (Gers et al., 2000)</h3>
+			<h2 class="_secondary-title" id="s7">7. Forget gates (Gers et al., 2000)</h2>
 
 			<p>A fixed self-weight of $1$ has a flaw on continuous input streams: nothing ever resets the state. $s_{c}$ grows without bound, $h$ saturates, and the cell degenerates into an ordinary unit. Gers, Schmidhuber and Cummins replaced the constant $1$ with a learned <strong>forget gate</strong> $y^{\varphi}$:</p>
 
@@ -372,7 +429,7 @@ $$</div>
 				<p>With $b_\varphi$ around $1$ the gate starts near $\sigma(1)\approx 0.73$ or higher, so the cell remembers before it has learned what to forget. Jozefowicz et al. (2015) found this single change closes much of the gap between LSTM and GRU.</p>
 			</div>
 
-			<h3 class="_secondary-title" id="s8">8. The modern LSTM in vector form</h3>
+			<h2 class="_secondary-title" id="s8">8. The modern LSTM in vector form</h2>
 
 			<p>Today's standard cell (as in PyTorch and TensorFlow) is the forget-gate LSTM with full backpropagation through time, $g=\tanh$, $h=\tanh$, and all four transforms computed from $[h_{t-1}, x_t]$. With hidden size $n$ and input size $d$:</p>
 
@@ -400,7 +457,7 @@ $$</div>
 
 			<p>Some variants add <em>peephole</em> connections, letting gates see $c_{t-1}$ (or $c_t$ for the output gate), e.g. $f_t = \sigma(W_f[h_{t-1},x_t] + p_f\odot c_{t-1} + b_f)$. Gers et al. (2002) used these for precise timing tasks.</p>
 
-			<h3 class="_secondary-title" id="s9">9. Backpropagation through the modern cell</h3>
+			<h2 class="_secondary-title" id="s9">9. Backpropagation through the modern cell</h2>
 
 			<p>Let $\delta h_t = \partial L/\partial h_t$ (loss gradient at step $t$ plus the gradient arriving from step $t+1$) and $\delta c_{t+1}$ be the gradient flowing back into the cell state from the future. Write $z_f, z_i, z_o, z_c$ for the pre-activations. Applying the chain rule to each line of the forward pass:</p>
 
@@ -423,7 +480,7 @@ $$</div>
 \delta c_{t-1} \mathrel{+}= \delta c_t\odot f_t .
 $$</div>
 
-			<h4 class="_tertiary-title">Where the long-range gradient lives</h4>
+			<h3 class="_tertiary-title">Where the long-range gradient lives</h3>
 
 			<p>Ignoring the paths through the gates, the gradient from $c_t$ back to $c_{t-q}$ is</p>
 
@@ -435,7 +492,7 @@ $$</div>
 
 			<p>With $f\equiv 1$ this is exactly the CEC. With $f = 0.99$ the signal after $100$ steps is still $0.99^{100}\approx 0.37$, while a plain RNN with factor $0.9$ retains $0.9^{100}\approx 2.7\times10^{-5}$. The chart at the top plots precisely this comparison. The full Jacobian also contains terms through $h_{t-1}$ and the gates; those behave like an ordinary RNN and do decay, which is why modern LSTMs are usually trained with gradient clipping.</p>
 
-			<h3 class="_secondary-title" id="s10">10. A worked scalar example</h3>
+			<h2 class="_secondary-title" id="s10">10. A worked scalar example</h2>
 
 			<p>Take $n=1$, $c_{t-1}=0.5$, and suppose the pre-activations come out as $z_f=1$, $z_i=0$, $z_o=2$, $z_c=1$.</p>
 
@@ -471,7 +528,7 @@ $$</div>
 
 			<p>Notice that $\delta c_{t-1}$ is simply $\delta c_t$ times the forget gate. No weight and no sigmoid derivative appears on that path.</p>
 
-			<h3 class="_secondary-title" id="s11">11. A reference implementation</h3>
+			<h2 class="_secondary-title" id="s11">11. A reference implementation</h2>
 
 			<p>The NumPy code below implements Sections 8 and 9 directly. It passes a finite-difference gradient check with relative error around $4\times10^{-10}$.</p>
 
@@ -518,9 +575,9 @@ def lstm_backward(dH, cache, W):
         dc_next = dc * f                 # the carousel
     return dW, db</code></pre>
 
-			<h3 class="_secondary-title" id="s12">12. Cost, and the family of variants</h3>
+			<h2 class="_secondary-title" id="s12">12. Cost, and the family of variants</h2>
 
-			<h4 class="_tertiary-title">Parameters and complexity</h4>
+			<h3 class="_tertiary-title">Parameters and complexity</h3>
 
 			<p>A modern LSTM layer has four weight matrices and four bias vectors:</p>
 
@@ -536,7 +593,7 @@ $$</div>
 
 			<p>where $K$ is the number of outputs, $C$ the number of blocks of size $S$, $H$ conventional hidden units, $I$ the fan-in, and $W$ the number of weights. That is $O(1)$ per weight and time step, the same as BPTT, but without storing the activation history: only the $2CSI$ state derivatives $\partial s/\partial w$ are kept.</p>
 
-			<h4 class="_tertiary-title">Gated recurrent unit (GRU)</h4>
+			<h3 class="_tertiary-title">Gated recurrent unit (GRU)</h3>
 
 			<p>Cho et al. (2014) merged the cell and hidden state and used two gates:</p>
 
@@ -550,7 +607,7 @@ $$</div>
 
 			<p>Comparing with $c_t = f_t\odot c_{t-1} + i_t\odot\tilde c_t$: the update gate $u_t$ plays the forget gate, and $1-u_t$ plays the input gate, coupling the two. GRU has three weight blocks instead of four and no output gate.</p>
 
-			<h4 class="_tertiary-title">Architectural extensions</h4>
+			<h3 class="_tertiary-title">Architectural extensions</h3>
 
 			<ul class="_list">
 				<li><strong>Bidirectional LSTM</strong> runs one LSTM forwards and one backwards over the sequence and feeds both to the output layer, so each prediction sees past and future context. Combined with the CTC loss (Graves et al., 2006) it handles unsegmented sequences such as speech and handwriting.</li>
@@ -560,7 +617,7 @@ $$</div>
 				<li><strong>Sequence-to-sequence and attention.</strong> An encoder LSTM reads the input and a decoder LSTM generates the output (Sutskever et al., 2014); attention (Bahdanau et al., 2015) lets the decoder look back at all encoder states rather than a single fixed vector.</li>
 			</ul>
 
-			<h3 class="_secondary-title" id="s13">13. What the 1997 experiments showed</h3>
+			<h2 class="_secondary-title" id="s13">13. What the 1997 experiments showed</h2>
 
 			<p>Every task except the first was built so that no short-lag training examples exist, and most were too hard for random weight guessing.</p>
 
@@ -580,7 +637,7 @@ $$</div>
 
 			<p>One scaling result stands out: when the number of distractor symbols grows in proportion to the time lag, training time grows very slowly, from 30,000 sequences at lag 50 to 49,000 at lag 1,000.</p>
 
-			<h3 class="_secondary-title" id="s14">14. Limitations</h3>
+			<h2 class="_secondary-title" id="s14">14. Limitations</h2>
 
 			<ul class="_list">
 				<li><strong>Non-decomposable tasks.</strong> Truncated LSTM struggles with strongly delayed XOR, where storing only one of the two inputs does not reduce error at all.</li>
@@ -600,7 +657,7 @@ $$</div>
 				<p>The tutorial by Staudemeyer and Rothstein Morris prints the sigmoid threshold unit as $1/(1-e^{-l s})$; the correct form is $1/(1+e^{-l s})$. This page uses the correct sign throughout.</p>
 			</div>
 
-			<h4 class="_tertiary-title" id="references">References</h4>
+			<h3 class="_tertiary-title" id="references">References</h3>
 
 			<ol class="_list">
 				<li>S. Hochreiter and J. Schmidhuber. <em>Long Short-Term Memory</em>. Neural Computation 9(8):1735&ndash;1780, 1997.</li>
@@ -622,10 +679,10 @@ $$</div>
 					<li><a href="../posts.html">Posts</a></li>
 				</ul>
 			</nav>
-		</section>
+		</article>
 
 		<div id="notice">
-			Repository: <a href="https://github.com/zeutonx/Portfolio" target="_blank">https://github.com/zeutonx/Portfolio</a>
+			Repository: <a href="https://github.com/zeutonx/Portfolio" target="_blank" rel="noopener">https://github.com/zeutonx/Portfolio</a>
 		</div>
 	</main>
 

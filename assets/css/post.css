@@ -7,12 +7,22 @@
 ._title-date {
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
+	align-items: baseline;
+	gap: 1.5rem;
+	margin-block-start: 1.25rem;
+	padding-block-end: 0.6em;
 	border-block-end: var(--border-shorthand);
 }
 
-._title-date h2 {
+._title-date h1 {
 	margin: 0;
+}
+
+@media (max-width: 36rem) {
+	._title-date {
+		flex-direction: column;
+		gap: 0.4rem;
+	}
 }
 
 ._byline {
@@ -44,7 +54,7 @@
 	font-family: var(--font-mono);
 	font-size: var(--font-size-secondary);
 	text-transform: uppercase;
-	letter-spacing: 0.08em;
+	letter-spacing: var(--tracking-label);
 }
 
 ._toc ol {
@@ -63,7 +73,7 @@
 	padding-inline-start: 0.9375rem;
 	padding-block: 0.15em;
 	margin-block: 1.4em;
-	font-size: 0.94em;
+	font-size: var(--font-size-small);
 }
 
 ._note p {
@@ -75,7 +85,7 @@
 	font-family: var(--font-mono);
 	font-size: var(--font-size-secondary);
 	text-transform: uppercase;
-	letter-spacing: 0.08em;
+	letter-spacing: var(--tracking-label);
 	color: var(--accent);
 	margin-block-end: 0.2em;
 }
@@ -101,15 +111,14 @@ mjx-container {
 table {
 	width: 100%;
 	border-collapse: collapse;
-	font-size: var(--font-size-primary);
 }
 
 th {
 	font-family: var(--font-mono);
 	font-size: var(--font-size-secondary);
-	font-weight: 600;
+	font-weight: var(--weight-medium);
 	text-transform: uppercase;
-	letter-spacing: 0.05em;
+	letter-spacing: var(--tracking-label);
 	text-align: left;
 	padding: 0.5em 0.8em;
 	border-block-end: 0.125rem solid var(--ink);
@@ -125,8 +134,6 @@ td {
 /* Code */
 
 pre {
-	font-family: var(--font-mono);
-	font-size: 0.82em;
 	line-height: 1.55;
 	background: rgba(30, 29, 27, 0.04);
 	border: var(--border-shorthand);
@@ -136,15 +143,6 @@ pre {
 	overflow-x: auto;
 }
 
-code {
-	font-family: var(--font-mono);
-	font-size: 0.9em;
-}
-
-pre code {
-	font-size: inherit;
-}
-
 /* Figures */
 
 ._figure {
@@ -152,15 +150,15 @@ pre code {
 }
 
 ._figure figcaption {
-	font-size: 0.92em;
-	color: rgba(30, 29, 27, 0.6);
+	font-size: var(--font-size-small);
+	color: var(--muted);
 	margin-block-start: 0.6em;
 }
 
 ._figure-label {
 	font-family: var(--font-mono);
 	font-size: var(--font-size-secondary);
-	letter-spacing: 0.04em;
+	letter-spacing: var(--tracking-mono);
 }
 
 ._diagram {
@@ -177,6 +175,11 @@ pre code {
 	display: block;
 	border: var(--border-shorthand);
 	border-radius: 0.25rem;
+}
+
+/* SVG labels take the same monospace face as every other label */
+._diagram text,
+._chart text {
 	font-family: var(--font-mono);
 }
 
@@ -187,6 +190,7 @@ pre code {
 	margin-block-end: 1em;
 	font-family: var(--font-mono);
 	font-size: var(--font-size-secondary);
+	letter-spacing: var(--tracking-mono);
 }
 
 ._lab label {
@@ -198,7 +202,7 @@ pre code {
 }
 
 ._lab output {
-	font-weight: 600;
+	font-weight: var(--weight-bold);
 	color: var(--accent);
 }
 
@@ -243,7 +247,7 @@ input[type=range] {
 	font-family: var(--font-mono);
 	font-size: var(--font-size-secondary);
 	text-transform: uppercase;
-	letter-spacing: 0.05em;
+	letter-spacing: var(--tracking-label);
 }
 
 ._bottom-navigation a { text-decoration: none; }

@@ -11,9 +11,8 @@
 	border-block-end: var(--border-shorthand);
 }
 
-._resume-head h2 {
+._resume-head h1 {
 	margin: 0 0 0.25em;
-	font-size: 2rem;
 }
 
 ._resume-tagline {
@@ -30,7 +29,7 @@
 	list-style: none;
 	font-family: var(--font-mono);
 	font-size: var(--font-size-secondary);
-	letter-spacing: 0.03em;
+	letter-spacing: var(--tracking-mono);
 }
 
 ._resume-contact a {
@@ -50,13 +49,13 @@
 	border-block-end: none;
 }
 
-._resume-section h3 {
+._resume-section h2 {
 	margin-block: 1.8rem 1.2rem;
 	font-family: var(--font-mono);
 	font-size: var(--font-size-secondary);
-	font-weight: 500;
+	font-weight: var(--weight-medium);
 	text-transform: uppercase;
-	letter-spacing: 0.1em;
+	letter-spacing: var(--tracking-label);
 	color: var(--accent);
 }
 
@@ -73,17 +72,17 @@
 	gap: 1.5rem;
 }
 
-._entry-head h4 {
+._entry-head h3 {
 	margin: 0;
 	font-size: 1em;
-	font-weight: 600;
 }
 
 ._entry-date {
 	flex: none;
 	font-family: var(--font-mono);
 	font-size: var(--font-size-secondary);
-	color: rgba(30, 29, 27, 0.6);
+	letter-spacing: var(--tracking-mono);
+	color: var(--muted);
 	white-space: nowrap;
 }
 
@@ -95,7 +94,7 @@
 	font-family: var(--font-mono);
 	font-size: var(--font-size-secondary);
 	text-transform: uppercase;
-	letter-spacing: 0.06em;
+	letter-spacing: var(--tracking-label);
 	text-decoration: none;
 	border-block-end: var(--border-shorthand);
 }
@@ -131,9 +130,9 @@
 	font-family: var(--font-mono);
 	font-size: var(--font-size-secondary);
 	text-transform: uppercase;
-	letter-spacing: 0.06em;
+	letter-spacing: var(--tracking-label);
 	line-height: 2.2;
-	color: rgba(30, 29, 27, 0.6);
+	color: var(--muted);
 }
 
 ._entry-details dd,

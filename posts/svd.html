@@ -2,13 +2,37 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="author" content="Abhinaash Tiwari">
-	<meta name="description" content="Singular Value Decomposition explained from the geometry up: why every matrix factors as U Sigma V transpose, what the singular values measure, and how one decomposition answers questions about rank, subspaces, low-rank approximation, pseudoinverses, conditioning and PCA.">
-	<meta name="keywords" content="singular value decomposition, SVD, linear algebra, low-rank approximation, Eckart-Young-Mirsky, pseudoinverse, Moore-Penrose, condition number, principal component analysis, PCA, numerical rank, image compression">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Singular Value Decomposition | Abhinaash Blog</title>
+	<title>Singular Value Decomposition | Abhinaash Tiwari</title>
+	<meta name="description" content="Singular Value Decomposition from the geometry up: why every matrix factors as UΣVᵀ, and how it explains rank, low-rank approximation, pseudoinverses and PCA.">
+	<meta name="author" content="Abhinaash Tiwari">
+	<meta name="keywords" content="singular value decomposition, SVD, linear algebra, low-rank approximation, Eckart-Young-Mirsky, pseudoinverse, Moore-Penrose, condition number, principal component analysis, PCA, numerical rank, image compression">
+	<meta name="robots" content="index, follow, max-image-preview:large">
+	<link rel="canonical" href="https://abhinaash.com.np/posts/svd.html">
 
-	<link rel="icon" type="image/x-icon" href="#">
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Abhinaash Blog">
+	<meta property="og:locale" content="en_US">
+	<meta property="og:title" content="Singular Value Decomposition: Finding the Hidden Geometry Inside a Matrix">
+	<meta property="og:description" content="Singular Value Decomposition from the geometry up: why every matrix factors as UΣVᵀ, and how it explains rank, low-rank approximation, pseudoinverses and PCA.">
+	<meta property="og:url" content="https://abhinaash.com.np/posts/svd.html">
+	<meta property="og:image" content="https://abhinaash.com.np/assets/images/profile-640.jpg">
+	<meta property="og:image:width" content="640">
+	<meta property="og:image:height" content="640">
+	<meta property="og:image:alt" content="Portrait of Abhinaash Tiwari">
+	<meta property="article:published_time" content="2026-09-15">
+	<meta property="article:author" content="https://abhinaash.com.np/about.html">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Singular Value Decomposition: Finding the Hidden Geometry Inside a Matrix">
+	<meta name="twitter:description" content="Singular Value Decomposition from the geometry up: why every matrix factors as UΣVᵀ, and how it explains rank, low-rank approximation, pseudoinverses and PCA.">
+	<meta name="twitter:image" content="https://abhinaash.com.np/assets/images/profile-640.jpg">
+
+	<meta name="theme-color" content="#faf9f6">
+	<link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400..600&family=Lora:ital,wght@0,400..600;1,400..600&display=swap">
 	<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="../assets/css/post.css">
 
@@ -21,10 +45,43 @@
 		};
 	</script>
 	<script defer id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "BlogPosting",
+				"@id": "https://abhinaash.com.np/posts/svd.html#post",
+				"mainEntityOfPage": "https://abhinaash.com.np/posts/svd.html",
+				"headline": "Singular Value Decomposition: Finding the Hidden Geometry Inside a Matrix",
+				"description": "Singular Value Decomposition from the geometry up: why every matrix factors as UΣVᵀ, and how it explains rank, low-rank approximation, pseudoinverses and PCA.",
+				"datePublished": "2026-09-15",
+				"inLanguage": "en",
+				"author": {
+					"@type": "Person",
+					"@id": "https://abhinaash.com.np/#person",
+					"name": "Abhinaash Tiwari",
+					"url": "https://abhinaash.com.np/about.html"
+				},
+				"publisher": {
+					"@type": "Person",
+					"@id": "https://abhinaash.com.np/#person",
+					"name": "Abhinaash Tiwari",
+					"url": "https://abhinaash.com.np/about.html"
+				},
+				"isPartOf": {
+					"@type": "Blog",
+					"name": "Abhinaash Blog",
+					"url": "https://abhinaash.com.np/posts.html"
+				}
+			}
+		]
+	}
+	</script>
 </head>
 <body>
 	<header class="container__">
-		<h1 class="__header-title"><a href="../index.html">Abhinaash Blog</a></h1>
+		<p class="__header-title"><a href="../index.html">Abhinaash Blog</a></p>
 		<nav class="__header-nav">
 			<ul>
 				<li><a href="../index.html">Home</a></li>
@@ -36,11 +93,11 @@
 	</header>
 
 	<main class="container__">
-		<section class="__post">
-			<img class="_thumbnail" src="https://picsum.photos/seed/svd/800/400?grayscale" width="800" height="400" alt="Article thumbnail.">
+		<article class="__post">
+			<img class="_thumbnail" src="../assets/images/thumbnails/svd.svg" width="800" height="400" alt="">
 			<div class="_title-date">
-				<h2>Singular Value Decomposition: Finding the Hidden Geometry Inside a Matrix</h2>
-				<time datetime="2026-09-15"><i>September 15, 2026</i></time>
+				<h1>Singular Value Decomposition: Finding the Hidden Geometry Inside a Matrix</h1>
+				<time datetime="2026-09-15">September 15, 2026</time>
 			</div>
 
 			<p class="_byline"><em>Every matrix is a rotation, a stretch, and another rotation. Once you see that, rank, conditioning, compression, least squares and PCA all turn out to be the same fact viewed from different angles.</em></p>
@@ -85,7 +142,7 @@ $$</div>
 				</ol>
 			</div>
 
-			<h3 class="_secondary-title" id="s1">1. What does SVD actually say?</h3>
+			<h2 class="_secondary-title" id="s1">1. What does SVD actually say?</h2>
 
 			<p>Let $A \in \mathbb{R}^{m \times n}$. Then $A = U\Sigma V^{T}$, where</p>
 
@@ -113,7 +170,7 @@ $$</div>
 \boxed{\;\text{change coordinates} \rightarrow \text{stretch} \rightarrow \text{change coordinates again}\;}
 $$</div>
 
-			<h3 class="_secondary-title" id="s2">2. The geometry behind the factorisation</h3>
+			<h2 class="_secondary-title" id="s2">2. The geometry behind the factorisation</h2>
 
 			<p>Suppose a vector $x \in \mathbb{R}^n$ is transformed by $A$, giving $y = Ax$. Using the SVD, $y = U\Sigma V^{T}x$. Read the operations from right to left.</p>
 
@@ -153,7 +210,7 @@ $$</div>
 
 			<p>The vector $v_i$ is a special direction in the input space. The matrix $A$ sends it to the direction $u_i$ in the output space. Its length changes by exactly the factor $\sigma_i$. No rotation of $v_i$ into some unrelated direction, no shearing &mdash; along these particular directions, $A$ does nothing but scale.</p>
 
-			<h3 class="_secondary-title" id="s3">3. The circle-to-ellipse picture</h3>
+			<h2 class="_secondary-title" id="s3">3. The circle-to-ellipse picture</h2>
 
 			<p>In two dimensions this becomes something you can draw. Consider every vector with $\|x\|_2 = 1$; these form the unit circle. Apply $A$ to all of them. The image is an ellipse.</p>
 
@@ -179,7 +236,7 @@ $$</div>
 
 			<p>and the maximising vector is $v_1$. The largest singular value is precisely the operator $2$-norm of $A$, which is why $\sigma_1$ shows up whenever someone needs to bound how much a matrix can amplify a vector.</p>
 
-			<h3 class="_secondary-title" id="s4">4. Where do the singular values come from?</h3>
+			<h2 class="_secondary-title" id="s4">4. Where do the singular values come from?</h2>
 
 			<p>Why should such a factorisation exist at all? The answer starts with a trick: even when $A$ is rectangular, the matrix</p>
 
@@ -218,7 +275,7 @@ $$</div>
 				<p>This is the cleanest way to <em>understand</em> where singular values come from, but it is a poor way to <em>compute</em> them. Forming $A^{T}A$ squares the condition number, so small singular values are computed with badly degraded accuracy. Practical algorithms work on $A$ directly, via bidiagonalisation.</p>
 			</div>
 
-			<h3 class="_secondary-title" id="s5">5. Constructing the left singular vectors</h3>
+			<h2 class="_secondary-title" id="s5">5. Constructing the left singular vectors</h2>
 
 			<p>Once $v_i$ and $\sigma_i$ are known, define, for every nonzero singular value,</p>
 
@@ -248,7 +305,7 @@ $$</div>
 
 			<p>When $r &lt; m$, the vectors $u_1, \ldots, u_r$ do not yet fill $\mathbb{R}^m$; the remaining columns of $U$ are obtained by extending them to an orthonormal basis, and Section 7 says what those extra directions mean.</p>
 
-			<h3 class="_secondary-title" id="s6">6. Why two sets of singular vectors?</h3>
+			<h2 class="_secondary-title" id="s6">6. Why two sets of singular vectors?</h2>
 
 			<p>Eigenvalue decomposition looks for vectors satisfying</p>
 
@@ -272,7 +329,7 @@ $$</div>
 
 			<p>Instead of asking which directions are preserved, SVD asks which input directions go to which output directions, and by how much. That question always has an answer. This is also why SVD avoids the other failures of eigendecomposition: eigenvectors need not be orthogonal, a matrix may not have enough of them to form a basis, and the eigenvalues may be complex even for a real matrix. Singular values are real, nonnegative, and always exist.</p>
 
-			<h3 class="_secondary-title" id="s7">7. SVD reveals the four fundamental subspaces</h3>
+			<h2 class="_secondary-title" id="s7">7. SVD reveals the four fundamental subspaces</h2>
 
 			<p>Suppose $\operatorname{rank}(A) = r$. Then the singular vectors hand you all four fundamental subspaces, already equipped with orthonormal bases. On the output side,</p>
 
@@ -290,7 +347,7 @@ $$</div>
 
 			<p>This is a good reason to regard SVD as more than a computational device. It reorganises the entire subspace structure of $A$ into a single picture.</p>
 
-			<h3 class="_secondary-title" id="s8">8. SVD as a sum of rank-one matrices</h3>
+			<h2 class="_secondary-title" id="s8">8. SVD as a sum of rank-one matrices</h2>
 
 			<p>Multiplying out $U\Sigma V^{T}$ column by column gives a different and very useful form:</p>
 
@@ -308,7 +365,7 @@ $$</div>
 
 			<p>where the importance of the $i$th pattern is measured by $\sigma_i$. The matrix has been decomposed into layers of structure, strongest first.</p>
 
-			<h3 class="_secondary-title" id="s9">9. The first singular component</h3>
+			<h2 class="_secondary-title" id="s9">9. The first singular component</h2>
 
 			<p>The leading term $A_1 = \sigma_1 u_1 v_1^{T}$ captures the strongest rank-one structure inside $A$. Adding the next term,</p>
 
@@ -324,7 +381,7 @@ $$</div>
 
 			<p>This is the <strong>truncated SVD</strong>. The remarkable part is not that it is a convenient approximation. It is that among all rank-$k$ matrices, it is the best one.</p>
 
-			<h3 class="_secondary-title" id="s10">10. The Eckart&ndash;Young&ndash;Mirsky theorem</h3>
+			<h2 class="_secondary-title" id="s10">10. The Eckart&ndash;Young&ndash;Mirsky theorem</h2>
 
 			<p>Suppose we want the closest rank-$k$ approximation to $A$. There are infinitely many rank-$k$ matrices to choose from, and no obvious reason the answer should be simple. But it is: among <strong>every</strong> matrix $B$ with $\operatorname{rank}(B) \leq k$, the truncated SVD $A_k$ minimises the error. In the Frobenius norm,</p>
 
@@ -353,7 +410,7 @@ $$</div>
 
 			<p>and discard the rest. This is dimensionality reduction in its most fundamental linear-algebraic form, and the theorem certifies that nothing better exists at that rank.</p>
 
-			<h3 class="_secondary-title" id="s11">11. Why image compression works</h3>
+			<h2 class="_secondary-title" id="s11">11. Why image compression works</h2>
 
 			<p>Consider a grayscale image stored as $A \in \mathbb{R}^{m \times n}$, where each entry $a_{ij}$ is a pixel intensity, and write its SVD as before. A photograph usually contains strong spatial redundancy: neighbouring pixels are related, large regions are nearly uniform, structures repeat. That redundancy shows up as rapidly decaying singular values,</p>
 
@@ -375,7 +432,7 @@ $$</div>
 
 			<p>which for a square image of side $n$ is roughly $k &lt; n/2$. In practice useful reconstructions often need far fewer terms than that, so the saving can be substantial &mdash; and the Eckart&ndash;Young&ndash;Mirsky theorem guarantees that for the storage budget spent, no rank-$k$ scheme reproduces the image more faithfully.</p>
 
-			<h3 class="_secondary-title" id="s12">12. SVD and noise</h3>
+			<h2 class="_secondary-title" id="s12">12. SVD and noise</h2>
 
 			<p>Suppose</p>
 
@@ -387,7 +444,7 @@ $$</div>
 
 			<p>It is worth being careful here. "Small singular value" and "noise" are not synonyms; whether the identification is justified depends on the data and on the modelling assumptions, and a genuinely small but real effect will be discarded along with the noise. But as a working principle, in problems where the signal really is low rank and the noise really is diffuse, it is remarkably effective.</p>
 
-			<h3 class="_secondary-title" id="s13">13. Numerical rank</h3>
+			<h2 class="_secondary-title" id="s13">13. Numerical rank</h2>
 
 			<p>Exact mathematical rank is a discrete quantity, and that makes it fragile. Consider a matrix whose singular values are</p>
 
@@ -405,7 +462,7 @@ $$</div>
 
 			<p>treating singular values below a tolerance as zero. Because Eckart&ndash;Young&ndash;Mirsky tells us $\sigma_{k+1}$ is exactly the distance from $A$ to the nearest rank-$k$ matrix, this is not an arbitrary convention: it says the matrix is within $\text{tol}$ of one with that exact rank. SVD is the standard tool for detecting near-dependencies precisely because it measures <em>how close</em> to singular a matrix is, not merely whether it is.</p>
 
-			<h3 class="_secondary-title" id="s14">14. SVD and the Moore&ndash;Penrose pseudoinverse</h3>
+			<h2 class="_secondary-title" id="s14">14. SVD and the Moore&ndash;Penrose pseudoinverse</h2>
 
 			<p>Suppose we want to solve $Ax = b$. If $A$ is square and invertible, $x = A^{-1}b$ and there is nothing to discuss. Real problems are rarely so accommodating: $A$ may be rectangular, rank-deficient, or both, in which case the system may have no solution or infinitely many.</p>
 
@@ -430,7 +487,7 @@ $$</div>
 				<p>Notice what $1/\sigma_i$ does to a very small but nonzero singular value: it becomes enormous, and any noise in $b$ along that direction is amplified by the same factor. This is why practical pseudoinverse computations truncate at a tolerance rather than inverting every nonzero $\sigma_i$ &mdash; the same idea as numerical rank, and closely related to Tikhonov regularisation.</p>
 			</div>
 
-			<h3 class="_secondary-title" id="s15">15. Condition numbers and ill-conditioning</h3>
+			<h2 class="_secondary-title" id="s15">15. Condition numbers and ill-conditioning</h2>
 
 			<p>Suppose $A$ is square and of full rank. Its spectral condition number is</p>
 
@@ -448,7 +505,7 @@ $$</div>
 
 			<p>A perfectly conditioned matrix has $\kappa_2 = 1$ and stretches every direction equally &mdash; a scaled orthogonal matrix, which maps the sphere to a sphere.</p>
 
-			<h3 class="_secondary-title" id="s16">16. SVD versus eigenvalue decomposition</h3>
+			<h2 class="_secondary-title" id="s16">16. SVD versus eigenvalue decomposition</h2>
 
 			<p>The two decompositions answer different questions. Eigendecomposition $A = Q\Lambda Q^{-1}$ describes <em>invariant</em> directions, $Av_i = \lambda_i v_i$: feed in $v_i$ and the same direction comes back. SVD describes <em>input-output</em> directions, $Av_i = \sigma_i u_i$: feed in $v_i$ and a possibly different direction comes out.</p>
 
@@ -483,7 +540,7 @@ $$</div>
 
 			<p>so the determinant measures volume scaling, which is just the product of the stretching factors along the principal axes. A single small singular value drags the determinant toward zero, which is the algebraic shadow of the flattened ellipsoid from the previous section.</p>
 
-			<h3 class="_secondary-title" id="s17">17. SVD and principal component analysis</h3>
+			<h2 class="_secondary-title" id="s17">17. SVD and principal component analysis</h2>
 
 			<p>Let a <em>centred</em> dataset be $X \in \mathbb{R}^{m \times n}$, with $m$ samples in rows and $n$ features in columns, each column having mean zero. Take its SVD, $X = U\Sigma V^{T}$. Then</p>
 
@@ -505,7 +562,7 @@ $$</div>
 
 			<p>So PCA is not merely related to SVD; PCA <em>is</em> SVD applied to centred data. This is also how PCA is computed in practice, since taking the SVD of $X$ avoids ever forming $X^{T}X$ and the loss of accuracy that comes with it. The centring genuinely matters: SVD of uncentred data gives directions of largest second moment rather than largest variance, and the leading direction usually just points at the mean.</p>
 
-			<h3 class="_secondary-title" id="s18">18. SVD and recommendation systems</h3>
+			<h2 class="_secondary-title" id="s18">18. SVD and recommendation systems</h2>
 
 			<p>Imagine a matrix $R$ whose rows are users and whose columns are movies, with $r_{ij}$ the rating user $i$ gave movie $j$. The raw matrix may be enormous, but preferences plausibly depend on far fewer underlying factors &mdash; a taste for action, for comedy, for slow character studies. If so, $R$ is approximately low rank, and a truncated factorisation</p>
 
@@ -520,7 +577,7 @@ $$</div>
 				<p>Real rating matrices are mostly <em>missing</em>, not mostly zero, and classical SVD has no notion of a missing entry &mdash; filling the gaps with zeros quietly asserts that every unrated film was rated badly. Production systems therefore use matrix factorisation models fitted only to the observed entries, typically by regularised least squares or gradient descent. These are usually described as "SVD" in the recommender literature, but they are an optimisation problem inspired by the decomposition, not the decomposition itself.</p>
 			</div>
 
-			<h3 class="_secondary-title" id="s19">19. A small worked example</h3>
+			<h2 class="_secondary-title" id="s19">19. A small worked example</h2>
 
 			<p>Take</p>
 
@@ -574,7 +631,7 @@ $$</div>
 
 			<p>But the numbers matter less than what they say. The direction $v_1$, running diagonally at $45^\circ$, is stretched by $\sqrt{45} \approx 6.7$, while the perpendicular direction $v_2$ is stretched only by $\sqrt{5} \approx 2.2$. The matrix looked like four arbitrary entries; SVD has extracted the two natural axes along which it acts, and the factor by which it acts on each.</p>
 
-			<h3 class="_secondary-title" id="s20">20. The deeper idea</h3>
+			<h2 class="_secondary-title" id="s20">20. The deeper idea</h2>
 
 			<p>SVD is usually introduced as a formula, $A = U\Sigma V^{T}$. But its real content is about <em>choosing the right coordinates</em>.</p>
 
@@ -592,7 +649,7 @@ $$</div>
 
 			<p>should be read as the statement that <strong>a complicated linear transformation is simple when viewed from the correct input and output bases</strong> &mdash; and that for a linear map, such bases always exist.</p>
 
-			<h3 class="_secondary-title" id="conclusion">Conclusion</h3>
+			<h2 class="_secondary-title" id="conclusion">Conclusion</h2>
 
 			<p>Singular Value Decomposition is one of the central organising ideas of linear algebra because a single computation answers so many separate questions at once. Given a matrix $A$, its SVD tells us:</p>
 
@@ -630,7 +687,7 @@ $$</div>
 
 			<p>That is the hidden geometry SVD extracts from a matrix &mdash; and the reason a table of numbers is never just a table of numbers.</p>
 
-			<h4 class="_tertiary-title" id="further-reading">Further reading</h4>
+			<h3 class="_tertiary-title" id="further-reading">Further reading</h3>
 
 			<ul class="_list">
 				<li>Trefethen &amp; Bau. <em>Numerical Linear Algebra</em>. SIAM, 1997, Lectures 4&ndash;5. &mdash; the geometric derivation, done properly.</li>
@@ -639,7 +696,7 @@ $$</div>
 				<li>Horn &amp; Johnson. <em>Matrix Analysis</em>. Cambridge University Press. &mdash; singular value inequalities and the underlying theory.</li>
 				<li>Eckart &amp; Young. <em>The approximation of one matrix by another of lower rank</em>. Psychometrika, 1936. &mdash; the original low-rank approximation result.</li>
 				<li>Mirsky. <em>Symmetric gauge functions and unitarily invariant norms</em>. Quarterly Journal of Mathematics, 1960. &mdash; the generalisation to all unitarily invariant norms.</li>
-				<li>IBM. <em>What Is Singular Value Decomposition?</em> <a href="https://www.ibm.com/think/topics/singular-value-decomposition" target="_blank">ibm.com/think/topics/singular-value-decomposition</a></li>
+				<li>IBM. <em>What Is Singular Value Decomposition?</em> <a href="https://www.ibm.com/think/topics/singular-value-decomposition" target="_blank" rel="noopener">ibm.com/think/topics/singular-value-decomposition</a></li>
 			</ul>
 
 			<nav class="_bottom-navigation" aria-label="bottom-navigation">
@@ -649,10 +706,10 @@ $$</div>
 					<li><a href="../posts.html">Posts</a></li>
 				</ul>
 			</nav>
-		</section>
+		</article>
 
 		<div id="notice">
-			Repository: <a href="https://github.com/zeutonx/Portfolio" target="_blank">https://github.com/zeutonx/Portfolio</a>
+			Repository: <a href="https://github.com/zeutonx/Portfolio" target="_blank" rel="noopener">https://github.com/zeutonx/Portfolio</a>
 		</div>
 	</main>
 

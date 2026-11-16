@@ -42,12 +42,12 @@ The design is a minimal "notebook" theme: a cream page on a dotted desk backgrou
 
 ## Adding a post
 
-1. Copy an existing post (e.g. `posts/svd.html`) to `posts/<slug>.html` and replace the content. Keep the `<head>` — it links `style.css` and `post.css` and configures MathJax.
+1. Copy an existing post (e.g. `posts/svd.html`) to `posts/<slug>.html` and replace the content. Keep the `<head>` — it loads the fonts, links `style.css` and `post.css`, and configures MathJax — but update everything page-specific in it: `<title>`, the description, the canonical URL, the `og:`/`twitter:` tags, and the JSON-LD block (headline, description, `datePublished`, URLs). Add the new URL to `sitemap.xml` too.
 2. Write maths as LaTeX. Inline: `$A = U\Sigma V^T$`. Display: wrap in `<div class="_math-block">$$ … $$</div>` so wide equations scroll instead of overflowing on narrow screens.
 3. Escape HTML-sensitive characters inside maths: use `&lt;` and `&gt;` for `<` and `>`, and `&amp;` for the `&` alignment character in `aligned` environments.
 4. Available building blocks (all in `post.css`):
    - `._toc` — table of contents box; link each entry to a section `id`
-   - `._secondary-title` / `._tertiary-title` — numbered sections and subsections
+   - `._secondary-title` (`<h2>`) / `._tertiary-title` (`<h3>`) — numbered sections and subsections; the post title is the page's only `<h1>`
    - `._note` with a `._note-label` — margin note for caveats and technical asides
    - `._table-wrap` around a `<table>` — ledger-style table
    - `._list` — spaced list

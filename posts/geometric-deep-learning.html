@@ -2,13 +2,37 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="author" content="Abhinaash Tiwari">
-	<meta name="description" content="A long read on grids, groups, graphs, geodesics and gauges: why most successful neural network architectures follow from the symmetries of the data's domain, based on the 2021 Geometric Deep Learning paper by Bronstein, Bruna, Cohen and Veličković.">
-	<meta name="keywords" content="geometric deep learning, symmetry, group theory, equivariance, invariance, graph neural networks, convolutional neural networks, gauge equivariance, Erlangen programme, message passing, Weisfeiler-Lehman">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Geometric Deep Learning, Explained | Abhinaash Blog</title>
+	<title>Geometric Deep Learning, Explained | Abhinaash Tiwari</title>
+	<meta name="description" content="Grids, groups, graphs, geodesics and gauges: why successful neural network architectures follow from the symmetries of the data's domain.">
+	<meta name="author" content="Abhinaash Tiwari">
+	<meta name="keywords" content="geometric deep learning, symmetry, group theory, equivariance, invariance, graph neural networks, convolutional neural networks, gauge equivariance, Erlangen programme, message passing, Weisfeiler-Lehman">
+	<meta name="robots" content="index, follow, max-image-preview:large">
+	<link rel="canonical" href="https://abhinaash.com.np/posts/geometric-deep-learning.html">
 
-	<link rel="icon" type="image/x-icon" href="#">
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Abhinaash Blog">
+	<meta property="og:locale" content="en_US">
+	<meta property="og:title" content="Geometric Deep Learning, Explained: Why Symmetry Is the Real Architecture">
+	<meta property="og:description" content="Grids, groups, graphs, geodesics and gauges: why successful neural network architectures follow from the symmetries of the data's domain.">
+	<meta property="og:url" content="https://abhinaash.com.np/posts/geometric-deep-learning.html">
+	<meta property="og:image" content="https://abhinaash.com.np/assets/images/profile-640.jpg">
+	<meta property="og:image:width" content="640">
+	<meta property="og:image:height" content="640">
+	<meta property="og:image:alt" content="Portrait of Abhinaash Tiwari">
+	<meta property="article:published_time" content="2026-09-15">
+	<meta property="article:author" content="https://abhinaash.com.np/about.html">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Geometric Deep Learning, Explained: Why Symmetry Is the Real Architecture">
+	<meta name="twitter:description" content="Grids, groups, graphs, geodesics and gauges: why successful neural network architectures follow from the symmetries of the data's domain.">
+	<meta name="twitter:image" content="https://abhinaash.com.np/assets/images/profile-640.jpg">
+
+	<meta name="theme-color" content="#faf9f6">
+	<link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400..600&family=Lora:ital,wght@0,400..600;1,400..600&display=swap">
 	<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="../assets/css/post.css">
 
@@ -21,10 +45,43 @@
 		};
 	</script>
 	<script defer id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "BlogPosting",
+				"@id": "https://abhinaash.com.np/posts/geometric-deep-learning.html#post",
+				"mainEntityOfPage": "https://abhinaash.com.np/posts/geometric-deep-learning.html",
+				"headline": "Geometric Deep Learning, Explained: Why Symmetry Is the Real Architecture",
+				"description": "Grids, groups, graphs, geodesics and gauges: why successful neural network architectures follow from the symmetries of the data's domain.",
+				"datePublished": "2026-09-15",
+				"inLanguage": "en",
+				"author": {
+					"@type": "Person",
+					"@id": "https://abhinaash.com.np/#person",
+					"name": "Abhinaash Tiwari",
+					"url": "https://abhinaash.com.np/about.html"
+				},
+				"publisher": {
+					"@type": "Person",
+					"@id": "https://abhinaash.com.np/#person",
+					"name": "Abhinaash Tiwari",
+					"url": "https://abhinaash.com.np/about.html"
+				},
+				"isPartOf": {
+					"@type": "Blog",
+					"name": "Abhinaash Blog",
+					"url": "https://abhinaash.com.np/posts.html"
+				}
+			}
+		]
+	}
+	</script>
 </head>
 <body>
 	<header class="container__">
-		<h1 class="__header-title"><a href="../index.html">Abhinaash Blog</a></h1>
+		<p class="__header-title"><a href="../index.html">Abhinaash Blog</a></p>
 		<nav class="__header-nav">
 			<ul>
 				<li><a href="../index.html">Home</a></li>
@@ -36,11 +93,11 @@
 	</header>
 
 	<main class="container__">
-		<section class="__post">
-			<img class="_thumbnail" src="https://picsum.photos/id/180/800/400?grayscale" width="800" height="400" alt="Article thumbnail.">
+		<article class="__post">
+			<img class="_thumbnail" src="../assets/images/thumbnails/geometric-deep-learning.svg" width="800" height="400" alt="">
 			<div class="_title-date">
-				<h2>Geometric Deep Learning, Explained: Why Symmetry Is the Real Architecture</h2>
-				<time datetime="2026-09-15"><i>September 15, 2026</i></time>
+				<h1>Geometric Deep Learning, Explained: Why Symmetry Is the Real Architecture</h1>
+				<time datetime="2026-09-15">September 15, 2026</time>
 			</div>
 
 			<p class="_byline"><em>A long read on grids, groups, graphs, geodesics and gauges. Based on the 2021 book-length paper by Michael Bronstein, Joan Bruna, Taco Cohen and Petar Veličković (arXiv:2104.13478).</em></p>
@@ -70,7 +127,7 @@
 				</ol>
 			</div>
 
-			<h3 class="_secondary-title" id="s1">1. A 150-year-old idea</h3>
+			<h2 class="_secondary-title" id="s1">1. A 150-year-old idea</h2>
 
 			<p>In 1872, Felix Klein had a problem. Geometry had split into a mess of competing systems: Euclidean, affine, projective, hyperbolic. Mathematicians argued about which one was "true."</p>
 
@@ -88,11 +145,11 @@
 
 			<p>GDL applies the same move to neural networks. Instead of a zoo, we get a small set of principles, and architectures become consequences of those principles.</p>
 
-			<h3 class="_secondary-title" id="s2">2. Why we need priors at all: the curse of dimensionality</h3>
+			<h2 class="_secondary-title" id="s2">2. Why we need priors at all: the curse of dimensionality</h2>
 
 			<p>Before talking about symmetry, it helps to see why "just use a big network" isn't enough.</p>
 
-			<h4 class="_tertiary-title">The learning setup</h4>
+			<h3 class="_tertiary-title">The learning setup</h3>
 
 			<p>We have samples $x_i$ drawn from some distribution $P$ and labels $y_i = f^*(x_i)$. We pick a model $f$ from a hypothesis class $\mathcal{F}$ to minimise the risk</p>
 
@@ -108,7 +165,7 @@ $$</div>
 
 			<p>A richer model class helps the first term and hurts the second. A good inductive bias shrinks both at once.</p>
 
-			<h4 class="_tertiary-title">Universal approximation doesn't save us</h4>
+			<h3 class="_tertiary-title">Universal approximation doesn't save us</h3>
 
 			<p>The universal approximation theorem says a two-layer network</p>
 
@@ -118,7 +175,7 @@ $$</div>
 
 			<p>can approximate any continuous function on a compact set, as long as $\sigma$ isn't a polynomial. Great. But it says nothing about how many neurons you need or how many samples it takes to find them.</p>
 
-			<h4 class="_tertiary-title">Lipschitz functions are already hopeless</h4>
+			<h3 class="_tertiary-title">Lipschitz functions are already hopeless</h3>
 
 			<p>Take the gentlest assumption imaginable: $f^*$ is 1-Lipschitz, meaning $|f(x) - f(x')| \le \|x - x'\|$.</p>
 
@@ -136,9 +193,9 @@ $$</div>
 
 			<p>So we need a different kind of prior. Not "the function is smooth," but "the input has structure." That's where geometry comes in.</p>
 
-			<h3 class="_secondary-title" id="s3">3. The three geometric priors</h3>
+			<h2 class="_secondary-title" id="s3">3. The three geometric priors</h2>
 
-			<h4 class="_tertiary-title">Signals on domains</h4>
+			<h3 class="_tertiary-title">Signals on domains</h3>
 
 			<p>The key shift is to stop viewing an input as a flat vector in $\mathbb{R}^d$. Instead, treat it as a <strong>signal on a domain</strong>:</p>
 
@@ -156,7 +213,7 @@ $$</div>
 
 			<p>The space of signals $\mathcal{X}(\Omega, \mathcal{C})$ is huge, but the structure of $\Omega$ tells us which functions of $x$ make sense.</p>
 
-			<h4 class="_tertiary-title">Prior 1: Symmetry</h4>
+			<h3 class="_tertiary-title">Prior 1: Symmetry</h3>
 
 			<p>A symmetry is a transformation that leaves something we care about unchanged. Symmetries always form a <strong>group</strong>.</p>
 
@@ -181,7 +238,7 @@ $$</div>
 
 			<p>Why does this help statistically? If $f^*$ is invariant, it only depends on the <em>orbit</em> of $x$, not $x$ itself. The space of orbits is smaller, so you need fewer samples to cover it.</p>
 
-			<h4 class="_tertiary-title">A detour into graphs: isomorphism</h4>
+			<h3 class="_tertiary-title">A detour into graphs: isomorphism</h3>
 
 			<p>On graphs, the symmetry isn't a geometric motion. It's relabelling. Node order is arbitrary, so if $\mathbf{P}$ is a permutation matrix,</p>
 
@@ -193,7 +250,7 @@ $$</div>
 
 			<p>We'll come back to this later, because it limits what graph networks can tell apart.</p>
 
-			<h4 class="_tertiary-title">Prior 2: Deformation stability</h4>
+			<h3 class="_tertiary-title">Prior 2: Deformation stability</h3>
 
 			<p>Real data are only approximately symmetric. A slightly squished "7" is still a 7.</p>
 
@@ -209,7 +266,7 @@ $$</div>
 
 			<p>For domains that change (different graphs, different meshes), the analogous requirement is that approximately isomorphic domains give similar outputs.</p>
 
-			<h4 class="_tertiary-title">Prior 3: Scale separation</h4>
+			<h3 class="_tertiary-title">Prior 3: Scale separation</h3>
 
 			<p>Physics tends to be hierarchical. Nearby things interact strongly. Far-away things interact through summaries.</p>
 
@@ -223,7 +280,7 @@ $$</div>
 
 			<p>It's provably shift-invariant and stable to deformations. If that looks a lot like a CNN with fixed filters, that's because it basically is. It's the mathematical ancestor.</p>
 
-			<h3 class="_secondary-title" id="s4">4. The blueprint</h3>
+			<h2 class="_secondary-title" id="s4">4. The blueprint</h2>
 
 			<p>Here's the part that ties it together.</p>
 
@@ -267,7 +324,7 @@ $$</div>
 
 			<p>One more distinction: sometimes the domain is <strong>fixed</strong> (every image lives on the same grid), and sometimes it's <strong>part of the input</strong> (every molecule has its own graph). The second case is where isomorphism, rather than transformation, becomes the key notion.</p>
 
-			<h3 class="_secondary-title" id="s5">5. The five Gs</h3>
+			<h2 class="_secondary-title" id="s5">5. The five Gs</h2>
 
 			<p>Here's the lay of the land before we dig in.</p>
 
@@ -289,7 +346,7 @@ $$</div>
 				</table>
 			</div>
 
-			<h4 class="_tertiary-title">5.1 Graphs and sets</h4>
+			<h3 class="_tertiary-title">5.1 Graphs and sets</h3>
 
 			<p><strong>Sets first.</strong> A set is a graph with no edges. Zaheer et al. showed that permutation-invariant functions on sets can be written as</p>
 
@@ -333,7 +390,7 @@ $$</div>
 
 			<p>Its eigenvectors act like Fourier modes on the graph. And since the Laplacian itself is permutation-equivariant, any polynomial $p(\boldsymbol{\Delta})$ gives you an equivariant layer for free.</p>
 
-			<h4 class="_tertiary-title">5.2 Grids: where convolution comes from</h4>
+			<h3 class="_tertiary-title">5.2 Grids: where convolution comes from</h3>
 
 			<p>This is my favourite result in the whole framework, because it's so clean.</p>
 
@@ -361,7 +418,7 @@ $$</div>
 
 			<p>The deeper reason: exponentials are the characters of the translation group. Fourier analysis <em>is</em> the representation theory of shifts. That observation is what lets the whole idea generalise.</p>
 
-			<h4 class="_tertiary-title">5.3 Groups and homogeneous spaces</h4>
+			<h3 class="_tertiary-title">5.3 Groups and homogeneous spaces</h3>
 
 			<p>A homogeneous space is a domain where the group can move any point to any other. The sphere is the standard example: rotations in $\mathrm{SO}(3)$ can take any point to any other point, so $\mathbb{S}^2 \cong \mathrm{SO}(3)/\mathrm{SO}(2)$.</p>
 
@@ -381,7 +438,7 @@ $$</div>
 
 			<p>For compact groups, the Peter&ndash;Weyl theorem gives a Fourier theory. The Fourier coefficients become matrices, and the convolution theorem becomes a matrix product. On the sphere, that means spherical harmonics and Wigner D-matrices, and it's how spherical CNNs are computed efficiently.</p>
 
-			<h4 class="_tertiary-title">5.4 Geodesics and manifolds</h4>
+			<h3 class="_tertiary-title">5.4 Geodesics and manifolds</h3>
 
 			<p>Most shapes aren't homogeneous. A human body has no global symmetry group that slides the elbow onto the knee. For these, we need Riemannian geometry.</p>
 
@@ -415,7 +472,7 @@ $$</div>
 
 			<p>That frame problem is the whole reason gauges exist.</p>
 
-			<h4 class="_tertiary-title">5.5 Gauges and bundles</h4>
+			<h3 class="_tertiary-title">5.5 Gauges and bundles</h3>
 
 			<p>A <strong>gauge</strong> is a choice of frame (basis) in each tangent space. A <strong>gauge transformation</strong> changes those frames, point by point:</p>
 
@@ -435,7 +492,7 @@ $$</div>
 
 			<p>This is a linear constraint. You solve it once (with circular harmonics for 2D rotations) and learn coefficients in the resulting basis. These are called <strong>steerable kernels</strong>.</p>
 
-			<h4 class="_tertiary-title">5.6 Meshes and geometric graphs</h4>
+			<h3 class="_tertiary-title">5.6 Meshes and geometric graphs</h3>
 
 			<p>Computers don't store smooth manifolds. They store meshes: graphs with triangular faces. On a mesh, the standard Laplacian is the <strong>cotangent Laplacian</strong>:</p>
 
@@ -453,11 +510,11 @@ $$</div>
 
 			<p>Energy should be invariant. Forces should rotate with the molecule.</p>
 
-			<h3 class="_secondary-title" id="s6">6. The architectures, derived</h3>
+			<h2 class="_secondary-title" id="s6">6. The architectures, derived</h2>
 
 			<p>Now we cash in. Each of these is the blueprint on a particular domain.</p>
 
-			<h4 class="_tertiary-title">CNNs</h4>
+			<h3 class="_tertiary-title">CNNs</h3>
 
 			<p>Grid + translations. A conv layer is</p>
 
@@ -473,7 +530,7 @@ $$</div>
 
 			<p>And <strong>data augmentation</strong>? It encourages invariance but doesn't guarantee it. Built-in equivariance guarantees it for every parameter setting.</p>
 
-			<h4 class="_tertiary-title">Group-equivariant CNNs</h4>
+			<h3 class="_tertiary-title">Group-equivariant CNNs</h3>
 
 			<p>Three steps: lift the signal onto the group, convolve on the group a few times, then pool.</p>
 
@@ -481,7 +538,7 @@ $$</div>
 
 			<p>For continuous or large groups, storing a function on the whole group is expensive. <strong>Steerable CNNs</strong> keep features on the original domain but give them transformation types, using the kernel constraint from Section 5.5. For 3D, this means spherical harmonics and Clebsch&ndash;Gordan products (Tensor Field Networks).</p>
 
-			<h4 class="_tertiary-title">Graph neural networks</h4>
+			<h3 class="_tertiary-title">Graph neural networks</h3>
 
 			<p><strong>Spectral route.</strong> Bruna et al. started with the full spectral filter $\boldsymbol{\Phi}\,\hat\theta(\boldsymbol{\Lambda})\,\boldsymbol{\Phi}^\top$. ChebNet made it practical with Chebyshev polynomials,</p>
 
@@ -520,7 +577,7 @@ $$</div>
 
 			<p>Fixes include residual connections, rewiring the graph, and adding global attention.</p>
 
-			<h4 class="_tertiary-title">Deep Sets and Transformers</h4>
+			<h3 class="_tertiary-title">Deep Sets and Transformers</h3>
 
 			<p>Deep Sets is the graph model with no edges. PointNet is the same thing with max-pooling, applied to point clouds.</p>
 
@@ -542,7 +599,7 @@ $$</div>
 
 			<p>If you don't trust the given graph, you can <strong>learn one</strong>: embed the nodes, connect k-nearest neighbours, run a GNN, repeat. That's Dynamic Graph CNN. Attention itself is a soft version of this.</p>
 
-			<h4 class="_tertiary-title">Equivariant message passing</h4>
+			<h3 class="_tertiary-title">Equivariant message passing</h3>
 
 			<p>For molecules and physical systems, the E(n)-equivariant GNN is a neat design:</p>
 
@@ -558,7 +615,7 @@ $$</div>
 
 			<p>Using only distances is simple but loses some information (chirality, directions). Higher-order models carry features that transform like spherical harmonics and combine them with Clebsch&ndash;Gordan coefficients.</p>
 
-			<h4 class="_tertiary-title">Intrinsic mesh CNNs</h4>
+			<h3 class="_tertiary-title">Intrinsic mesh CNNs</h3>
 
 			<p>These implement the geodesic convolution on meshes. Around each vertex, build local polar coordinates and a set of soft "pixels" $w_k(u,v)$:</p>
 
@@ -575,7 +632,7 @@ $$</div>
 				<li><strong>Gauge-equivariant mesh CNNs</strong>: steerable kernels plus parallel transport. Keeps orientation information without picking a frame.</li>
 			</ul>
 
-			<h4 class="_tertiary-title">RNNs, and where gates come from</h4>
+			<h3 class="_tertiary-title">RNNs, and where gates come from</h3>
 
 			<p>A sequence is a signal on a 1D grid that arrives one step at a time. An RNN,</p>
 
@@ -613,7 +670,7 @@ $$</div>
 
 			<p>It also explains why gated networks remember well: a gate near zero means "time is passing slowly," so the state gets copied forward almost untouched, and gradients survive. And it suggests <strong>chrono initialisation</strong>: set the gate biases so that $1/\Gamma$ covers the range of time scales you expect in your data.</p>
 
-			<h4 class="_tertiary-title">LSTMs</h4>
+			<h3 class="_tertiary-title">LSTMs</h3>
 
 			<p>The LSTM splits the gate into three (input, forget, output) and adds a memory cell:</p>
 
@@ -628,7 +685,7 @@ $$</div>
 
 			<p>So on a 1D grid: translation symmetry gives you convolution, time-warping symmetry gives you gating. Same domain, two symmetries, two architectures.</p>
 
-			<h3 class="_secondary-title" id="s7">7. How powerful are GNNs? The Weisfeiler&ndash;Lehman story</h3>
+			<h2 class="_secondary-title" id="s7">7. How powerful are GNNs? The Weisfeiler&ndash;Lehman story</h2>
 
 			<p>A permutation-invariant GNN must give isomorphic graphs the same output. The flip side: can it tell <em>non</em>-isomorphic graphs apart?</p>
 
@@ -655,7 +712,7 @@ $$</div>
 
 			<p>I'd add one caution: telling graphs apart is only one axis. A more expressive model isn't automatically one that generalises better.</p>
 
-			<h3 class="_secondary-title" id="s8">8. Where this shows up in practice</h3>
+			<h2 class="_secondary-title" id="s8">8. Where this shows up in practice</h2>
 
 			<ul class="_list">
 				<li><strong>Chemistry and drug discovery.</strong> GNNs predict molecular properties far faster than quantum chemistry calculations. A GNN-based screen helped identify the antibiotic halicin. Energies need invariance; forces need E(3)-equivariance.</li>
@@ -669,7 +726,7 @@ $$</div>
 				<li><strong>Medical imaging and AR/VR.</strong> Cortical surfaces, 3D avatars.</li>
 			</ul>
 
-			<h3 class="_secondary-title" id="s9">9. A short history</h3>
+			<h2 class="_secondary-title" id="s9">9. A short history</h2>
 
 			<p>None of this came out of nowhere.</p>
 
@@ -683,7 +740,7 @@ $$</div>
 
 			<p>The phrase "geometric deep learning" itself was popularised in a 2017 paper about deep learning on graphs and manifolds. The 2021 book broadened it into the symmetry-first framework described here.</p>
 
-			<h3 class="_secondary-title" id="s10">10. What I take away from all this</h3>
+			<h2 class="_secondary-title" id="s10">10. What I take away from all this</h2>
 
 			<p>If I had to compress this post into one sentence: <strong>ask what shouldn't matter, and let that decide the architecture.</strong></p>
 
@@ -699,7 +756,7 @@ $$</div>
 
 			<p>I don't think this is the final word. There are open questions I find genuinely interesting. How much data does a symmetry actually save you, in precise terms? How do you handle symmetries that only mostly hold? How should expressivity and generalisation be traded off on graphs? What does this look like for causal or generative models? But as a way of making sense of the zoo, it's the most useful lens I've come across.</p>
 
-			<h4 class="_tertiary-title" id="further-reading">Further reading</h4>
+			<h3 class="_tertiary-title" id="further-reading">Further reading</h3>
 
 			<ul class="_list">
 				<li>Bronstein, Bruna, Cohen, Veli&#269;kovi&#263;. <em>Geometric Deep Learning: Grids, Groups, Graphs, Geodesics, and Gauges</em>. arXiv:2104.13478, 2021.</li>
@@ -722,10 +779,10 @@ $$</div>
 					<li><a href="../posts.html">Posts</a></li>
 				</ul>
 			</nav>
-		</section>
+		</article>
 
 		<div id="notice">
-			Repository: <a href="https://github.com/zeutonx/Portfolio" target="_blank">https://github.com/zeutonx/Portfolio</a>
+			Repository: <a href="https://github.com/zeutonx/Portfolio" target="_blank" rel="noopener">https://github.com/zeutonx/Portfolio</a>
 		</div>
 	</main>
 

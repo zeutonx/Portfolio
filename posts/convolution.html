@@ -2,13 +2,37 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="author" content="Abhinaash Tiwari">
-	<meta name="description" content="Why the convolution integral looks the way it does: flip, shift, multiply, integrate. A walk from the definition through smoothing, impulse responses, the convolution theorem, Green's functions, pattern matching, and the translation-invariance theorem that explains why convolution is everywhere.">
-	<meta name="keywords" content="convolution, convolution theorem, Fourier transform, impulse response, LTI systems, Green's function, heat kernel, Gaussian smoothing, cross-correlation, convolutional neural networks, translation invariance">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Convolution, from the Integral Up | Abhinaash Blog</title>
+	<title>Convolution, from the Integral Up | Abhinaash Tiwari</title>
+	<meta name="description" content="Why the convolution integral flips, shifts, multiplies and integrates: smoothing, impulse responses, the convolution theorem and translation invariance.">
+	<meta name="author" content="Abhinaash Tiwari">
+	<meta name="keywords" content="convolution, convolution theorem, Fourier transform, impulse response, LTI systems, Green's function, heat kernel, Gaussian smoothing, cross-correlation, convolutional neural networks, translation invariance">
+	<meta name="robots" content="index, follow, max-image-preview:large">
+	<link rel="canonical" href="https://abhinaash.com.np/posts/convolution.html">
 
-	<link rel="icon" type="image/x-icon" href="#">
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Abhinaash Blog">
+	<meta property="og:locale" content="en_US">
+	<meta property="og:title" content="Convolution: The Mathematics Behind Sliding, Smoothing, and Pattern Matching">
+	<meta property="og:description" content="Why the convolution integral flips, shifts, multiplies and integrates: smoothing, impulse responses, the convolution theorem and translation invariance.">
+	<meta property="og:url" content="https://abhinaash.com.np/posts/convolution.html">
+	<meta property="og:image" content="https://abhinaash.com.np/assets/images/profile-640.jpg">
+	<meta property="og:image:width" content="640">
+	<meta property="og:image:height" content="640">
+	<meta property="og:image:alt" content="Portrait of Abhinaash Tiwari">
+	<meta property="article:published_time" content="2026-09-15">
+	<meta property="article:author" content="https://abhinaash.com.np/about.html">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Convolution: The Mathematics Behind Sliding, Smoothing, and Pattern Matching">
+	<meta name="twitter:description" content="Why the convolution integral flips, shifts, multiplies and integrates: smoothing, impulse responses, the convolution theorem and translation invariance.">
+	<meta name="twitter:image" content="https://abhinaash.com.np/assets/images/profile-640.jpg">
+
+	<meta name="theme-color" content="#faf9f6">
+	<link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400..600&family=Lora:ital,wght@0,400..600;1,400..600&display=swap">
 	<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="../assets/css/post.css">
 
@@ -21,10 +45,43 @@
 		};
 	</script>
 	<script defer id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "BlogPosting",
+				"@id": "https://abhinaash.com.np/posts/convolution.html#post",
+				"mainEntityOfPage": "https://abhinaash.com.np/posts/convolution.html",
+				"headline": "Convolution: The Mathematics Behind Sliding, Smoothing, and Pattern Matching",
+				"description": "Why the convolution integral flips, shifts, multiplies and integrates: smoothing, impulse responses, the convolution theorem and translation invariance.",
+				"datePublished": "2026-09-15",
+				"inLanguage": "en",
+				"author": {
+					"@type": "Person",
+					"@id": "https://abhinaash.com.np/#person",
+					"name": "Abhinaash Tiwari",
+					"url": "https://abhinaash.com.np/about.html"
+				},
+				"publisher": {
+					"@type": "Person",
+					"@id": "https://abhinaash.com.np/#person",
+					"name": "Abhinaash Tiwari",
+					"url": "https://abhinaash.com.np/about.html"
+				},
+				"isPartOf": {
+					"@type": "Blog",
+					"name": "Abhinaash Blog",
+					"url": "https://abhinaash.com.np/posts.html"
+				}
+			}
+		]
+	}
+	</script>
 </head>
 <body>
 	<header class="container__">
-		<h1 class="__header-title"><a href="../index.html">Abhinaash Blog</a></h1>
+		<p class="__header-title"><a href="../index.html">Abhinaash Blog</a></p>
 		<nav class="__header-nav">
 			<ul>
 				<li><a href="../index.html">Home</a></li>
@@ -36,11 +93,11 @@
 	</header>
 
 	<main class="container__">
-		<section class="__post">
-			<img class="_thumbnail" src="https://picsum.photos/seed/convolution/800/400?grayscale" width="800" height="400" alt="Article thumbnail.">
+		<article class="__post">
+			<img class="_thumbnail" src="../assets/images/thumbnails/convolution.svg" width="800" height="400" alt="">
 			<div class="_title-date">
-				<h2>Convolution: The Mathematics Behind Sliding, Smoothing, and Pattern Matching</h2>
-				<time datetime="2026-09-15"><i>September 15, 2026</i></time>
+				<h1>Convolution: The Mathematics Behind Sliding, Smoothing, and Pattern Matching</h1>
+				<time datetime="2026-09-15">September 15, 2026</time>
 			</div>
 
 			<p class="_byline"><em>Why one function is reflected, why the other is shifted, and why the product is integrated &mdash; and how that single structure turns into smoothing, impulse responses, Green's functions and edge detectors.</em></p>
@@ -83,7 +140,7 @@ $$</div>
 				</ol>
 			</div>
 
-			<h3 class="_secondary-title" id="s1">1. Starting from the definition</h3>
+			<h2 class="_secondary-title" id="s1">1. Starting from the definition</h2>
 
 			<p>For suitable functions $f, g : \mathbb{R} \to \mathbb{R}$, their convolution is</p>
 
@@ -114,7 +171,7 @@ $$</div>
 				<p>The integral need not converge for arbitrary $f$ and $g$. A convenient sufficient condition is $f, g \in L^1(\mathbb{R})$: then $(f*g)(x)$ exists for almost every $x$, the result is again in $L^1$, and Young's inequality gives $\|f*g\|_1 \le \|f\|_1\|g\|_1$. Everything below assumes we are in a setting where the manipulations are licensed.</p>
 			</div>
 
-			<h3 class="_secondary-title" id="s2">2. Convolution as a weighted sum</h3>
+			<h2 class="_secondary-title" id="s2">2. Convolution as a weighted sum</h2>
 
 			<p>There is a second reading that is often more useful than the flip-and-slide picture. Fix $x$ and look at the integrand:</p>
 
@@ -128,7 +185,7 @@ $$</div>
 
 			<p>Notice also what the weighting rule does <em>not</em> depend on: absolute position. The weight relating output location $x$ to input location $t$ is a function of the offset $x-t$ alone. The same rule is applied at every point. Section 14 shows that this property essentially characterises convolution.</p>
 
-			<h3 class="_secondary-title" id="s3">3. Why convolution smooths functions</h3>
+			<h2 class="_secondary-title" id="s3">3. Why convolution smooths functions</h2>
 
 			<p>Take a Gaussian kernel with standard deviation $\sigma$,</p>
 
@@ -154,7 +211,7 @@ $$</div>
 
 			<p>The second equality is the useful one: to differentiate $f*g$ we may differentiate the <em>kernel</em> instead of $f$. So if $g$ is infinitely differentiable with compact support and $f$ is merely integrable, $f*g$ inherits the smoothness of $g$ and is itself infinitely differentiable. Convolving a rough function with a smooth kernel produces a smooth function, and this is one reason convolution is a basic tool in analysis and in partial differential equations.</p>
 
-			<h3 class="_secondary-title" id="s4">4. A simple discrete example</h3>
+			<h2 class="_secondary-title" id="s4">4. A simple discrete example</h2>
 
 			<p>Computers deal with sampled rather than continuous signals, and there the integral becomes a sum:</p>
 
@@ -194,7 +251,7 @@ $$</div>
 
 			<p>the same operation computes local averages &mdash; a moving-average filter, and the discrete counterpart of the Gaussian smoothing above. The weights summing to $1$ play the same role here as $\int G_\sigma = 1$ did there.</p>
 
-			<h3 class="_secondary-title" id="s5">5. Convolution as a sum of shifted copies</h3>
+			<h2 class="_secondary-title" id="s5">5. Convolution as a sum of shifted copies</h2>
 
 			<p>A third interpretation follows from linearity, and it is probably the most useful mental model of all.</p>
 
@@ -228,7 +285,7 @@ $$</div>
 
 			<p>This one picture explains smoothing, physical response systems, sums of independent random variables, and Green's functions using the same mathematics. It is also the picture that makes the next section almost inevitable.</p>
 
-			<h3 class="_secondary-title" id="s6">6. Convolution and linear systems</h3>
+			<h2 class="_secondary-title" id="s6">6. Convolution and linear systems</h2>
 
 			<p>Consider a system that accepts an input signal and returns an output. Feed it the simplest possible input, an impulse concentrated at the origin,</p>
 
@@ -269,11 +326,11 @@ $$</div>
 
 			<p>The system is <em>completely characterised</em> by its response to a single impulse. This is one of the deepest reasons convolution appears so relentlessly in engineering and mathematical physics: it is not that convolution happens to be useful for linear systems, it is that linearity plus time invariance leaves no other possibility.</p>
 
-			<h3 class="_secondary-title" id="s7">7. Fundamental algebraic properties</h3>
+			<h2 class="_secondary-title" id="s7">7. Fundamental algebraic properties</h2>
 
 			<p>Convolution behaves remarkably like multiplication.</p>
 
-			<h4 class="_tertiary-title">Commutativity</h4>
+			<h3 class="_tertiary-title">Commutativity</h3>
 
 			<div class="_math-block">$$
 \boxed{\;f * g = g * f\;}
@@ -287,7 +344,7 @@ $$</div>
 
 			<p>This is worth pausing on. The flip-and-slide picture treats $f$ and $g$ asymmetrically &mdash; one stays put, the other is reflected and dragged across it &mdash; but the result does not care which one you chose to move. "Signal" and "kernel" is a distinction we impose, not one the operation makes.</p>
 
-			<h4 class="_tertiary-title">Associativity, distributivity, scalars</h4>
+			<h3 class="_tertiary-title">Associativity, distributivity, scalars</h3>
 
 			<div class="_math-block">$$
 \boxed{\;(f*g)*h = f*(g*h)\;} \qquad \boxed{\;f*(g+h) = f*g + f*h\;} \qquad \boxed{\;(cf)*g = c(f*g)\;}
@@ -295,7 +352,7 @@ $$</div>
 
 			<p>Associativity has a concrete meaning: applying two filters in succession is the same as applying a single combined filter $g * h$, which is why cascaded blurs can be precomputed into one kernel.</p>
 
-			<h4 class="_tertiary-title">The missing identity</h4>
+			<h3 class="_tertiary-title">The missing identity</h3>
 
 			<p>One property of multiplication fails in an interesting way. There is no function $e \in L^1(\mathbb{R})$ with $e * f = f$ for all $f$. The identity element is the Dirac delta,</p>
 
@@ -305,7 +362,7 @@ $$</div>
 
 			<p>and $\delta$ is a distribution, not a function. This is not a technicality to be waved away &mdash; it is the reason approximate identities exist: kernels like $G_\sigma$ with $\sigma \to 0$ approach $\delta$ and recover $f$ in the limit, which is how smoothing is undone as the kernel narrows. It is also exactly what makes Section 10 work.</p>
 
-			<h3 class="_secondary-title" id="s8">8. The Fourier transform changes everything</h3>
+			<h2 class="_secondary-title" id="s8">8. The Fourier transform changes everything</h2>
 
 			<p>The resemblance to multiplication becomes an identity once we pass to the frequency domain.</p>
 
@@ -346,7 +403,7 @@ $$</div>
 
 			<p>The entire proof is one substitution and one application of Fubini. The reason it works is visible in the middle step: shifting $g$ by $t$ multiplies its transform by $e^{-i\omega t}$, and convolution is built out of exactly those shifts. Complex exponentials turn translation into multiplication, and convolution is nothing but a weighted sum of translations.</p>
 
-			<h3 class="_secondary-title" id="s9">9. Why smoothing makes sense in Fourier space</h3>
+			<h2 class="_secondary-title" id="s9">9. Why smoothing makes sense in Fourier space</h2>
 
 			<p>The convolution theorem gives a second, independent explanation of smoothing. If $h = f * g$, then</p>
 
@@ -378,7 +435,7 @@ $$</div>
 
 			<p>Neither is more fundamental. The Fourier transform is simply the change of basis in which the operation becomes diagonal.</p>
 
-			<h3 class="_secondary-title" id="s10">10. From convolution to differential equations</h3>
+			<h2 class="_secondary-title" id="s10">10. From convolution to differential equations</h2>
 
 			<p>The same structure explains why convolution is entangled with differential equations. Consider</p>
 
@@ -417,7 +474,7 @@ $$</div>
 
 			<p>Compare $\Phi$ with the Gaussian of Section 3: they match exactly when $\sigma = \sqrt{2t}$. Diffusion <em>is</em> Gaussian smoothing, with a kernel that widens as $\sqrt{t}$. The physical statement that heat spreads into neighbouring points and the analytic statement that convolution averages locally are the same statement, and the increasing width of the kernel is why detail is irreversibly lost as time runs forward.</p>
 
-			<h3 class="_secondary-title" id="s11">11. Convolution as pattern matching</h3>
+			<h2 class="_secondary-title" id="s11">11. Convolution as pattern matching</h2>
 
 			<p>Now take a discrete local patch and a filter of the same size,</p>
 
@@ -444,7 +501,7 @@ $$</div>
 				<p>The factor $\|x\|$ matters. A bright, high-contrast patch can produce a large response without resembling the template at all, simply because its norm is large. Raw inner products measure alignment only when magnitudes are controlled, which is part of why normalisation appears both in classical template matching (normalised cross-correlation) and in modern networks (batch and layer normalisation).</p>
 			</div>
 
-			<h3 class="_secondary-title" id="s12">12. A subtle point about CNNs</h3>
+			<h2 class="_secondary-title" id="s12">12. A subtle point about CNNs</h2>
 
 			<p>There is a mathematical detail worth stating plainly. True discrete convolution reverses the kernel,</p>
 
@@ -468,7 +525,7 @@ $$</div>
 
 			<p>Does the distinction matter? Mathematically, yes: cross-correlation is not commutative and not associative, so the algebra of Section 7 does not transfer to it unchanged. Practically, for a network it does not: the filter weights are learned, so a network that would benefit from the reflected kernel simply learns the reflected weights. The two formulations describe the same family of functions. Calling the layer "convolution" is entrenched terminology rather than an error, but it is worth knowing which operation the code actually performs &mdash; it matters as soon as you hand-design a kernel, or compare against a signal-processing reference.</p>
 
-			<h3 class="_secondary-title" id="s13">13. The deeper unifying picture</h3>
+			<h2 class="_secondary-title" id="s13">13. The deeper unifying picture</h2>
 
 			<p>We can now put the readings side by side. Let $h = f * g$.</p>
 
@@ -491,7 +548,7 @@ $$</div>
 
 			<p>These are not seven tricks that happen to share a symbol. They are seven descriptions of one structure.</p>
 
-			<h3 class="_secondary-title" id="s14">14. Why convolution appears everywhere</h3>
+			<h2 class="_secondary-title" id="s14">14. Why convolution appears everywhere</h2>
 
 			<p>There is a final reason for the ubiquity, and it is the sharpest one: <strong>translation symmetry</strong>.</p>
 
@@ -519,7 +576,7 @@ $$</div>
 
 			<p>So whenever a system is linear and treats every location by the same rule &mdash; a lens, a filter, a homogeneous medium, a layer of a network &mdash; convolution is already there, whether or not anyone wrote the integral down.</p>
 
-			<h3 class="_secondary-title" id="conclusion">Conclusion</h3>
+			<h2 class="_secondary-title" id="conclusion">Conclusion</h2>
 
 			<p>At first sight</p>
 
@@ -541,7 +598,7 @@ $$</div>
 
 			<p>because it shows that convolution is not an awkward alternative to multiplication. In the right representation, convolution <em>is</em> multiplication. And that is how an operation which first appears as a peculiar integral ended up as one of the organising ideas of modern applied mathematics.</p>
 
-			<h4 class="_tertiary-title" id="further-reading">Further reading</h4>
+			<h3 class="_tertiary-title" id="further-reading">Further reading</h3>
 
 			<ul class="_list">
 				<li>Stein &amp; Shakarchi. <em>Fourier Analysis: An Introduction</em>. Princeton Lectures in Analysis I, 2003. &mdash; convolution, approximate identities, the convolution theorem.</li>
@@ -560,10 +617,10 @@ $$</div>
 					<li><a href="../posts.html">Posts</a></li>
 				</ul>
 			</nav>
-		</section>
+		</article>
 
 		<div id="notice">
-			Repository: <a href="https://github.com/zeutonx/Portfolio" target="_blank">https://github.com/zeutonx/Portfolio</a>
+			Repository: <a href="https://github.com/zeutonx/Portfolio" target="_blank" rel="noopener">https://github.com/zeutonx/Portfolio</a>
 		</div>
 	</main>
 

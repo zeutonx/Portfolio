@@ -18,7 +18,6 @@
 
 ._about-name {
 	margin: 0 0 0.35em;
-	font-size: 2rem;
 }
 
 ._about-role {
@@ -36,7 +35,7 @@
 	font-family: var(--font-mono);
 	font-size: var(--font-size-secondary);
 	text-transform: uppercase;
-	letter-spacing: 0.08em;
+	letter-spacing: var(--tracking-label);
 }
 
 ._about-links a {
@@ -57,12 +56,12 @@
 	max-width: 46rem;
 }
 
-.__about-body h3 {
+.__about-body h2 {
 	font-family: var(--font-mono);
 	font-size: var(--font-size-secondary);
-	font-weight: 500;
+	font-weight: var(--weight-medium);
 	text-transform: uppercase;
-	letter-spacing: 0.1em;
+	letter-spacing: var(--tracking-label);
 	color: var(--accent);
 }
 
