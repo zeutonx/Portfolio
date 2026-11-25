@@ -16,21 +16,22 @@
 	<meta property="og:title" content="Resume | Abhinaash Tiwari">
 	<meta property="og:description" content="Academic resume of Abhinaash Tiwari: computational mathematics graduate of Kathmandu University, focused on optimization and applied analysis.">
 	<meta property="og:url" content="https://abhinaash.com.np/resume.html">
-	<meta property="og:image" content="https://abhinaash.com.np/assets/images/profile-640.jpg">
-	<meta property="og:image:width" content="640">
-	<meta property="og:image:height" content="640">
-	<meta property="og:image:alt" content="Portrait of Abhinaash Tiwari">
-	<meta name="twitter:card" content="summary">
+	<meta property="og:image" content="https://abhinaash.com.np/assets/images/social/site.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:image:alt" content="Abhinaash's Notebook: mathematics notes and essays">
+	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:title" content="Resume | Abhinaash Tiwari">
 	<meta name="twitter:description" content="Academic resume of Abhinaash Tiwari: computational mathematics graduate of Kathmandu University, focused on optimization and applied analysis.">
-	<meta name="twitter:image" content="https://abhinaash.com.np/assets/images/profile-640.jpg">
+	<meta name="twitter:image" content="https://abhinaash.com.np/assets/images/social/site.png">
 
-	<meta name="theme-color" content="#faf9f6">
+	<meta name="theme-color" content="#ffffff">
 	<link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg">
+	<link rel="apple-touch-icon" href="./assets/images/apple-touch-icon.png">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400..600&family=Lora:ital,wght@0,400..600;1,400..600&display=swap">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap">
 	<link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="./assets/css/resume.css">
 	<script type="application/ld+json">
@@ -54,19 +55,20 @@
 	</script>
 </head>
 <body>
+	<a class="skip-link" href="#main">Skip to content</a>
 	<header class="container__">
 		<p class="__header-title"><a href="./index.html">Abhinaash's Notebook</a></p>
-		<nav class="__header-nav">
+		<nav class="__header-nav" aria-label="Main navigation">
 			<ul>
 				<li><a href="./index.html">Home</a></li>
 				<li><a href="./about.html">About</a></li>
 				<li><a href="./posts.html">Posts</a></li>
-				<li><a class="current-page__" href="./resume.html">Resume</a></li>
+				<li><a class="current-page__" aria-current="page" href="./resume.html">Resume</a></li>
 			</ul>
 		</nav>
 	</header>
 
-	<main class="container__">
+	<main id="main" class="container__">
 		<article class="__resume">
 
 			<header class="_resume-head">
@@ -146,7 +148,7 @@
 						<h3>Image Compression Using Singular Value Decomposition</h3>
 						<span class="_entry-date">May 2025 – Jul 2025</span>
 					</div>
-					<p class="_entry-meta">Mathematics seminar project &middot; <a class="_entry-link" href="https://github.com/zeutonx/Greyscale-Image-Compression-Using-SVD" target="_blank" rel="noopener">Code on GitHub</a></p>
+					<p class="_entry-meta">Mathematics seminar project</p>
 					<ul>
 						<li>Applied truncated SVD to lossy greyscale image compression, grounded in the Eckart–Young–Mirsky theorem, and verified its error formula numerically.</li>
 						<li>Built a Python (NumPy) compression module and command-line tool with unit tests, choosing the rank by energy retained and PSNR. A 360×360 image is stored with 9× fewer values at 33.5 dB.</li>
@@ -159,7 +161,7 @@
 						<h3>Physics-Informed Neural Networks vs. Finite Differences for the Heat Equation</h3>
 						<span class="_entry-date">Dec 2024 – Apr 2025</span>
 					</div>
-					<p class="_entry-meta">Independent project &middot; <a class="_entry-link" href="https://github.com/zeutonx/pinn-heat-equation-benchmark" target="_blank" rel="noopener">Code on GitHub</a></p>
+					<p class="_entry-meta">Independent project</p>
 					<ul>
 						<li>Benchmarked PINNs against explicit, implicit and Crank–Nicolson finite-difference schemes for the 1D, 2D and 3D heat equations, comparing accuracy, runtime and memory under coarse discretization.</li>
 						<li>Trained PINNs with adaptive GradNorm loss weighting, Latin Hypercube Sampling and Adam/L-BFGS. Finite differences were more accurate; PINNs were faster in 3D.</li>
@@ -233,7 +235,7 @@
 	</main>
 
 	<footer>
-		<p class="__footer-copyright">&copy; Abhinaash Tiwari</p>
+		<p class="__footer-copyright">&copy; 2026 Abhinaash Tiwari &middot; <a href="https://github.com/zeutonx/Portfolio" target="_blank" rel="noopener">Source on GitHub</a></p>
 	</footer>
 </body>
 </html>

@@ -1,29 +1,25 @@
-.__resume {
-	max-width: 52rem;
-}
-
 /* Name block. Overrides the site header styles, since this is a nested <header>. */
 
 ._resume-head {
 	display: block;
 	margin: 0;
-	padding: 0 0 2rem;
+	padding: 0 0 var(--space-8);
 	border-block-end: var(--border-shorthand);
 }
 
 ._resume-head h1 {
-	margin: 0 0 0.25em;
+	margin: 0 0 var(--space-1);
 }
 
 ._resume-tagline {
-	margin: 0 0 0.9em;
+	margin: 0 0 var(--space-4);
 	font-style: italic;
 }
 
 ._resume-contact {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.4rem 1.6rem;
+	gap: var(--space-2) var(--space-6);
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -41,7 +37,7 @@
 /* Sections */
 
 ._resume-section {
-	padding-block: 0.4rem 0.6rem;
+	padding-block: var(--space-2) var(--space-2);
 	border-block-end: var(--border-shorthand);
 }
 
@@ -50,26 +46,20 @@
 }
 
 ._resume-section h2 {
-	margin-block: 1.8rem 1.2rem;
-	font-family: var(--font-mono);
-	font-size: var(--font-size-secondary);
-	font-weight: var(--weight-medium);
-	text-transform: uppercase;
-	letter-spacing: var(--tracking-label);
-	color: var(--accent);
+	margin-block: var(--space-8) var(--space-4);
 }
 
 /* Entries */
 
 ._entry {
-	margin-block-end: 1.5rem;
+	margin-block-end: var(--space-6);
 }
 
 ._entry-head {
 	display: flex;
 	justify-content: space-between;
 	align-items: baseline;
-	gap: 1.5rem;
+	gap: var(--space-6);
 }
 
 ._entry-head h3 {
@@ -87,14 +77,11 @@
 }
 
 ._entry-meta {
-	margin: 0.15em 0 0;
+	margin: var(--space-1) 0 0;
 }
 
 ._entry-link {
-	font-family: var(--font-mono);
 	font-size: var(--font-size-secondary);
-	text-transform: uppercase;
-	letter-spacing: var(--tracking-label);
 	text-decoration: none;
 	border-block-end: var(--border-shorthand);
 }
@@ -107,12 +94,12 @@
 }
 
 ._entry ul {
-	margin: 0.5em 0 0;
-	padding-inline-start: 1.2em;
+	margin: var(--space-2) 0 0;
+	padding-inline-start: var(--space-6);
 }
 
 ._entry li + li {
-	margin-block-start: 0.35em;
+	margin-block-start: var(--space-1);
 }
 
 /* Label / value pairs (thesis details, skills) */
@@ -121,16 +108,13 @@
 ._skills {
 	display: grid;
 	grid-template-columns: max-content 1fr;
-	gap: 0.3rem 1.25rem;
-	margin: 0.5em 0 0;
+	gap: var(--space-1) var(--space-4);
+	margin: var(--space-2) 0 0;
 }
 
 ._entry-details dt,
 ._skills dt {
-	font-family: var(--font-mono);
 	font-size: var(--font-size-secondary);
-	text-transform: uppercase;
-	letter-spacing: var(--tracking-label);
 	line-height: 2.2;
 	color: var(--muted);
 }
@@ -147,7 +131,7 @@
 @media (max-width: 36rem) {
 	._entry-head {
 		flex-direction: column;
-		gap: 0.1rem;
+		gap: var(--space-1);
 	}
 
 	._entry-details,
@@ -158,6 +142,6 @@
 
 	._entry-details dd,
 	._skills dd {
-		margin-block-end: 0.5rem;
+		margin-block-end: var(--space-2);
 	}
 }

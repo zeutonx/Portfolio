@@ -3,8 +3,8 @@
 .__about-intro {
 	display: flex;
 	align-items: center;
-	gap: 2.5rem;
-	padding-block-end: 2.5rem;
+	gap: var(--space-10);
+	padding-block-end: var(--space-10);
 	border-block-end: var(--border-shorthand);
 }
 
@@ -13,29 +13,26 @@
 	width: 10rem;
 	aspect-ratio: 1 / 1;
 	object-fit: cover;
-	border-radius: 50%;
+	border-radius: var(--radius);
 }
 
 ._about-name {
-	margin: 0 0 0.35em;
+	margin: 0 0 var(--space-1);
 }
 
 ._about-role {
-	margin: 0 0 1em;
+	margin: 0 0 var(--space-4);
 	font-style: italic;
 }
 
 ._about-links {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 1.4rem;
+	gap: var(--space-6);
 	margin: 0;
 	padding: 0;
 	list-style: none;
-	font-family: var(--font-mono);
 	font-size: var(--font-size-secondary);
-	text-transform: uppercase;
-	letter-spacing: var(--tracking-label);
 }
 
 ._about-links a {
@@ -52,22 +49,9 @@
 
 /* Body */
 
-.__about-body {
-	max-width: 46rem;
-}
-
-.__about-body h2 {
-	font-family: var(--font-mono);
-	font-size: var(--font-size-secondary);
-	font-weight: var(--weight-medium);
-	text-transform: uppercase;
-	letter-spacing: var(--tracking-label);
-	color: var(--accent);
-}
-
 ._about-interests,
 ._about-treks {
-	padding-inline-start: 1.2em;
+	padding-inline-start: var(--space-6);
 }
 
 ._about-treks {
@@ -78,7 +62,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: baseline;
-	gap: 1.5rem;
+	gap: var(--space-6);
 }
 
 ._trek-altitude {
@@ -93,7 +77,7 @@
 	.__about-intro {
 		flex-direction: column;
 		text-align: center;
-		gap: 1.5rem;
+		gap: var(--space-6);
 	}
 
 	._about-links {

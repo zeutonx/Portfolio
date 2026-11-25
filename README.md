@@ -8,7 +8,7 @@ Personal site and blog of Abhinaash Tiwari — proof-oriented notes and long-for
 
 The site is plain HTML and CSS with no build step, hosted on GitHub Pages. Mathematics is typeset client-side with MathJax, so posts are written directly in HTML with LaTeX inside `$…$` and `$$…$$` delimiters.
 
-The design is a minimal "notebook" theme: a cream page on a dotted desk background, serif body text (Lora), monospace labels (JetBrains Mono), a rust-coloured margin rule, and ledger-style tables.
+The design is deliberately plain: white page, neutral greys, one blue accent, IBM Plex Sans for text and IBM Plex Mono for code and dates. Spacing, type sizes, colours and the corner radius are tokens at the top of `style.css`; use those rather than new values.
 
 ## Posts
 
@@ -48,8 +48,8 @@ The design is a minimal "notebook" theme: a cream page on a dotted desk backgrou
 4. Available building blocks (all in `post.css`):
    - `._toc` — table of contents box; link each entry to a section `id`
    - `._secondary-title` (`<h2>`) / `._tertiary-title` (`<h3>`) — numbered sections and subsections; the post title is the page's only `<h1>`
-   - `._note` with a `._note-label` — margin note for caveats and technical asides
-   - `._table-wrap` around a `<table>` — ledger-style table
+   - `._note` with a `._note-label` — shaded note for caveats and technical asides
+   - `._table-wrap` around a `<table>` — ruled table
    - `._list` — spaced list
 5. Add a card for the post at the top of `posts.html`, and update the featured/recent cards in `index.html`.
 
