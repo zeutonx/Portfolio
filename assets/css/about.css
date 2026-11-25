@@ -65,8 +65,28 @@
 	color: var(--accent);
 }
 
-._about-interests {
+._about-interests,
+._about-treks {
 	padding-inline-start: 1.2em;
+}
+
+._about-treks {
+	max-width: 30rem;
+}
+
+._trek-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: 1.5rem;
+}
+
+._trek-altitude {
+	flex: none;
+	font-family: var(--font-mono);
+	font-size: var(--font-size-secondary);
+	letter-spacing: var(--tracking-mono);
+	color: var(--muted);
 }
 
 @media (max-width: 36rem) {
